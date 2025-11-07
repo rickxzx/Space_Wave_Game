@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh1ht75up7f4i"]
+
+[ext_resource type="Texture2D" uid="uid://cefftgorxthno" path="res://sprite/cometa.png" id="1_en3x7"]
+[ext_resource type="Script" uid="uid://c2c5ouq4j8l6k" path="res://scripts/enemy_3.gd" id="2_en3x7"]
+
+[sub_resource type="Gradient" id="Gradient_32mm3"]
+offsets = PackedFloat32Array(0.415584, 0.688312)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_en3x7"]
+gradient = SubResource("Gradient_32mm3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swjjm"]
+radius = 77.8095
+
+[node name="Node2D" type="Node2D"]
+
+[node name="enemy3" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.909804)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_en3x7")
+script = ExtResource("2_en3x7")
+
+[node name="PointLight2D" type="PointLight2D" parent="enemy3"]
+scale = Vector2(10.1593, 9.14957)
+energy = 3.0
+texture = SubResource("GradientTexture2D_en3x7")
+
+[node name="Area2D" type="Area2D" parent="enemy3" groups=["enemy_3"]]
+scale = Vector2(2.41889, 2.17847)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy3/Area2D"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_swjjm")
+
+[node name="Timer" type="Timer" parent="enemy3"]
+one_shot = true
+
+[connection signal="area_entered" from="enemy3/Area2D" to="enemy3" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="enemy3/Timer" to="enemy3" method="cor_white"]
