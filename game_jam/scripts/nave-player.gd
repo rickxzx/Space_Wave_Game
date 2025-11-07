@@ -92,3 +92,7 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	if uti_charge == false:
 		$nave/uti/CollisionShape2D.disabled = true
 		$nave/uti/uti.start(Global.uti_time)
+
+
+func _on_music_theme_finished() -> void:
+	$nave/MusicTheme.play(0)

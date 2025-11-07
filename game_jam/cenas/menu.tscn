@@ -122,83 +122,23 @@ theme_override_fonts/font = ExtResource("1_nbnbt")
 theme_override_font_sizes/font_size = 250
 text = "Space Wave"
 
-[node name="1" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 558.0
-offset_top = 305.0
-offset_right = 600.0
-offset_bottom = 328.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "PLAY"
-
-[node name="Label" type="Label" parent="Control/1"]
-layout_mode = 0
-offset_left = -32.0
-offset_top = 19.0
-offset_right = 84.0
-offset_bottom = 42.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "Press \"Space\""
-
-[node name="2" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 538.0
-offset_top = 261.0
-offset_right = 603.0
-offset_bottom = 284.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "Controls"
-
-[node name="Label" type="Label" parent="Control/2"]
-layout_mode = 0
-offset_left = -36.0
-offset_top = 19.0
-offset_right = 120.0
-offset_bottom = 73.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "\"WASD\" = move
-\"E\" = Energy Shield
-\"Q\" = Use Powerup 
-\"LMB\" = Shoot"
-
-[node name="3" type="Label" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 548.0
-offset_top = 298.0
-offset_right = 588.0
-offset_bottom = 321.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "EXIT"
-
-[node name="Label" type="Label" parent="Control/3"]
-layout_mode = 0
-offset_left = -31.0
-offset_top = 18.0
-offset_right = 85.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "Press \"Space\""
-
 [node name="<" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 497.0
-offset_top = 355.0
-offset_right = 539.0
-offset_bottom = 378.0
+offset_left = 487.0
+offset_top = 412.0
+offset_right = 529.0
+offset_bottom = 435.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "<"
 
 [node name=">" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 655.0
-offset_top = 355.0
-offset_right = 771.0
-offset_bottom = 378.0
+offset_left = 645.0
+offset_top = 412.0
+offset_right = 761.0
+offset_bottom = 435.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = ">"
 
@@ -222,12 +162,72 @@ autoplay = "entrada"
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 497.0
-offset_top = 1029.0
+offset_top = 304.0
 offset_right = 645.0
-offset_bottom = 1069.0
+offset_bottom = 344.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 theme_override_font_sizes/font_size = 40
 text = "by: rick"
+
+[node name="1" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 550.0
+offset_top = 376.0
+offset_right = 592.0
+offset_bottom = 399.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "PLAY"
+
+[node name="Label" type="Label" parent="Control/1"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = 19.0
+offset_right = 84.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "Press \"Space\""
+
+[node name="2" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 530.0
+offset_top = 312.0
+offset_right = 595.0
+offset_bottom = 335.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "Controls"
+
+[node name="Label" type="Label" parent="Control/2"]
+layout_mode = 0
+offset_left = -36.0
+offset_top = 19.0
+offset_right = 120.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "\"WASD\" = move
+\"E\" = Energy Shield
+\"Q\" = Use Powerup 
+\"LMB\" = Shoot"
+
+[node name="3" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 540.0
+offset_top = 369.0
+offset_right = 580.0
+offset_bottom = 392.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "EXIT"
+
+[node name="Label" type="Label" parent="Control/3"]
+layout_mode = 0
+offset_left = -31.0
+offset_top = 18.0
+offset_right = 85.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "Press \"Space\""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

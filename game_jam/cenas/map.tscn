@@ -602,7 +602,7 @@ autostart = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_v2wd5")
-position = Vector2(-1, 0)
+position = Vector2(-2, 0)
 scale = Vector2(0.900781, 0.9)
 mesh = SubResource("QuadMesh_csfwj")
 

@@ -1,0 +1,174 @@
+[gd_scene load_steps=9 format=3 uid="uid://fp1v4vkqk46j"]
+
+[ext_resource type="Texture2D" uid="uid://bcxfgi518q4rt" path="res://sprites/fabrica.png" id="1_aaq7p"]
+[ext_resource type="Script" uid="uid://cdo3trydby8fw" path="res://scripts/história.gd" id="1_qs5i1"]
+[ext_resource type="FontFile" uid="uid://lki1yhof7yno" path="res://fonts/Monolite.otf" id="3_2ac2k"]
+[ext_resource type="AudioStream" uid="uid://by167uxcui7j4" path="res://sound/intro-melancolica.mp3" id="4_76hac"]
+[ext_resource type="AudioStream" uid="uid://csscsd4f6kx46" path="res://sound/voz_inicio.mp3" id="5_ab7el"]
+
+[sub_resource type="Animation" id="Animation_76hac"]
+resource_name = "HI"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Camera2D/ColorRect/Fabrica:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10.1333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Camera2D/ColorRect/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 10.0667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["", "Bem-vindo à Fábrica de Carinhos! Cada clique é um gesto de amor para o nosso gatinho modelo. Quanto mais cliques, mais felicidade para o mundo dos gatinhos!"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Camera2D/VozInicio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(11.6667, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ab7el"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Camera2D/ColorRect/Fabrica:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Camera2D/ColorRect/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Bem-vindo à Fábrica de Carinhos! Cada clique é um gesto de amor para o nosso gatinho modelo. Quanto mais cliques, mais felicidade para o mundo dos gatinhos!"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Camera2D/VozInicio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in73t"]
+_data = {
+&"HI": SubResource("Animation_76hac"),
+&"RESET": SubResource("Animation_ab7el")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qs5i1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_in73t")
+}
+autoplay = "HI"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position = Vector2(577, 325)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Camera2D"]
+offset_left = -577.0
+offset_top = -325.0
+offset_right = 576.0
+offset_bottom = 336.0
+color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+
+[node name="Fabrica" type="Sprite2D" parent="Node2D/Camera2D/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(577, 291.75)
+scale = Vector2(1.08496, 0.342773)
+texture = ExtResource("1_aaq7p")
+
+[node name="Label" type="Label" parent="Node2D/Camera2D/ColorRect"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 570.0
+offset_right = 1133.0
+offset_bottom = 593.0
+theme_override_fonts/font = ExtResource("3_2ac2k")
+theme_override_font_sizes/font_size = 17
+text = "Bem-vindo à Fábrica de Carinhos! Cada clique é um gesto de amor para o nosso gatinho modelo. Quanto mais cliques, mais felicidade para o mundo dos gatinhos!"
+
+[node name="Intro-melancolica" type="AudioStreamPlayer" parent="Node2D/Camera2D"]
+stream = ExtResource("4_76hac")
+volume_db = -20.0
+autoplay = true
+
+[node name="VozInicio" type="AudioStreamPlayer" parent="Node2D/Camera2D"]
+stream = ExtResource("5_ab7el")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 530.0
+offset_top = 313.0
+offset_right = 632.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("3_2ac2k")
+text = "Press (Space)"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

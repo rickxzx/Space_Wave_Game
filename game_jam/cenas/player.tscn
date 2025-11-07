@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b83u4ijk8ticy"]
+[gd_scene load_steps=17 format=3 uid="uid://b83u4ijk8ticy"]
 
 [ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="1_8or6t"]
 [ext_resource type="Script" uid="uid://chuiv0hcgk0in" path="res://scripts/nave-player.gd" id="2_unwft"]
 [ext_resource type="Texture2D" uid="uid://e8cqmkrjck6i" path="res://sprite/shield.png" id="3_kthid"]
 [ext_resource type="AudioStream" uid="uid://jf4tl2rhpiqx" path="res://sounds/energy.mp3" id="4_xojfc"]
 [ext_resource type="Texture2D" uid="uid://b4l3m7qde4y17" path="res://sprite/circle.png" id="5_15dsx"]
+[ext_resource type="AudioStream" uid="uid://dpr3wtjc482pd" path="res://sounds/music_theme.mp3" id="6_8v4ht"]
 
 [sub_resource type="Gradient" id="Gradient_unwft"]
 offsets = PackedFloat32Array(0.357143, 0.863636)
@@ -291,6 +292,15 @@ scale_amount_min = 0.02
 scale_amount_max = 0.03
 color = Color(1, 0.321569, 0, 0.141176)
 
+[node name="MusicTheme" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+position = Vector2(30.0002, 54.9999)
+rotation = -1.5708
+scale = Vector2(5, 5)
+stream = ExtResource("6_8v4ht")
+volume_db = -10.0
+autoplay = true
+
 [connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
 [connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Node2D/nave/uti/uti" to="Node2D" method="_on_uti_timeout"]
+[connection signal="finished" from="Node2D/nave/MusicTheme" to="Node2D" method="_on_music_theme_finished"]

@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=3 uid="uid://bimo6m1lo26id"]
+
+[ext_resource type="Script" uid="uid://dgvt83rp274nw" path="res://scripts/final 1.gd" id="1_24hmy"]
+[ext_resource type="FontFile" uid="uid://lki1yhof7yno" path="res://fonts/Monolite.otf" id="2_rldnj"]
+[ext_resource type="AudioStream" uid="uid://cw63k0o76720b" path="res://sound/sad-movie-sounds_01-49494.mp3" id="3_y4luu"]
+[ext_resource type="Texture2D" uid="uid://dia4t5xt1brev" path="res://sprites/sad_cat_bad_final/frame_0_delay-0.33s.png" id="4_k56py"]
+[ext_resource type="Texture2D" uid="uid://doh5umgx0yp2u" path="res://sprites/sad_cat_bad_final/frame_1_delay-0.34s.png" id="5_5sepx"]
+[ext_resource type="Texture2D" uid="uid://dwq5611pa6v6t" path="res://sprites/sad_cat_bad_final/frame_2_delay-0.33s.png" id="6_lnumy"]
+[ext_resource type="Texture2D" uid="uid://catlvtngjclrd" path="res://sprites/sad_cat_bad_final/frame_3_delay-0.33s.png" id="7_imhgs"]
+[ext_resource type="Texture2D" uid="uid://byjvtldnbbqkk" path="res://sprites/sad_cat_bad_final/frame_4_delay-0.34s.png" id="8_ct2vn"]
+[ext_resource type="Texture2D" uid="uid://bjcgvytloqmyn" path="res://sprites/sad_cat_bad_final/frame_5_delay-0.34s.png" id="9_nh857"]
+
+[sub_resource type="Animation" id="Animation_k8psu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(574, 1135)]
+}
+
+[sub_resource type="Animation" id="Animation_y4luu"]
+resource_name = "bad"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.933333, 5.01, 7.01, 7.46667, 13, 15, 15.3667, 19.98, 22.01, 22.35, 26.98, 28.99, 29.0333, 29.58, 30.02),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": ["", "A tela está cheia de cliques. O contador marca mais de 1.000.000 de cliques e eles não param de subir. Mas o gato... não se mexe mais.", "A tela está cheia de cliques. O contador marca mais de 1.000.000 de cliques e eles não param de subir. Mas o gato... não se mexe mais.", "", "Você produziu tanto, clicou tanto, que o carinho virou rotina, produção em massa, sem alma.", "Você produziu tanto, clicou tanto, que o carinho virou rotina, produção em massa, sem alma.", "", "A fábrica está a todo vapor, as máquinas agora trabalham sozinhas, repetindo o gesto que antes era seu.", "A fábrica está a todo vapor, as máquinas agora trabalham sozinhas, repetindo o gesto que antes era seu.", "", "O gato já não precisa de você. Ou talvez... nunca precisou.", "O gato já não precisa de você. Ou talvez... nunca precisou.", "", "", "Final RUIM: “Carinho Industrial”"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(31.02, 32.99),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(574, 1135), Vector2(574, 503)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6xwk"]
+_data = {
+&"RESET": SubResource("Animation_k8psu"),
+&"bad": SubResource("Animation_y4luu")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmu85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k56py")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5sepx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lnumy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_imhgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ct2vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nh857")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_24hmy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n6xwk")
+}
+autoplay = "bad"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 330)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -733.0
+offset_top = -358.0
+offset_right = 722.0
+offset_bottom = 344.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -11.5
+offset_right = 295.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rldnj")
+horizontal_alignment = 1
+
+[node name="Sad-movie-sounds01-49494" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(426, 43)
+stream = ExtResource("3_y4luu")
+autoplay = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(574, 1135)
+sprite_frames = SubResource("SpriteFrames_jmu85")
+autoplay = "default"
+frame_progress = 0.672293
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce216qhb5vycd"]
+
+[ext_resource type="Script" uid="uid://dwpkspbbnqpg2" path="res://scripts/teste.gd" id="1_lbg61"]
+[ext_resource type="ArrayMesh" uid="uid://cc5esdd3oegbt" path="res://window/window.obj" id="1_t87xa"]
+[ext_resource type="ArrayMesh" uid="uid://dxm7yl6a8qyfj" path="res://person1/model.obj" id="3_un3lp"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_lbg61")
+
+[node name="Window" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.300807, -1.19209e-07, -0.180102)
+mesh = ExtResource("1_t87xa")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.993631, 0.0421775, -0.104489, -0.0183815, 0.975554, 0.21899, 0.111171, -0.215675, 0.970116, -0.49404, 0.262337, 0.0533212)
+fov = 73.4
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(0.979375, 0, -0.202052, -0.0640285, 0.948462, -0.310355, 0.191639, 0.316891, 0.9289, -0.107727, 0.216029, 0.387001)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00335101, 0.999994, 0, -0.999994, -0.00335101, 0, 0, -1.48977)
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.674831, 0, 0.737973, 0, 1, 0, -0.737973, 0, 0.674831, 1.2238, -0.429575, -2.37982)
+mesh = ExtResource("3_un3lp")

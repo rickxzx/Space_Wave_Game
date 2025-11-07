@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3dsjnwhiu3wc"]
+
+[ext_resource type="Script" uid="uid://bcf6f8adgrj7o" path="res://scripts/final_4.gd" id="1_uqkmt"]
+[ext_resource type="FontFile" uid="uid://lki1yhof7yno" path="res://fonts/Monolite.otf" id="2_5wmv3"]
+[ext_resource type="AudioStream" uid="uid://dslonin3j2kr4" path="res://sound/neutral-roomtone-73507.mp3" id="3_x0gq3"]
+[ext_resource type="Texture2D" uid="uid://b8nte6vuppnio" path="res://sprites/neutral_final/neutral_final.png" id="4_41bk0"]
+
+[sub_resource type="Animation" id="Animation_x0gq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NeutralFinal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(574, 944)]
+}
+
+[sub_resource type="Animation" id="Animation_5wmv3"]
+resource_name = "neutro"
+length = 45.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.966667, 9, 10, 10.11, 18.01, 19.01, 19.26, 26.99, 28.07, 28.16, 33.95, 34.96, 35.28, 36.94, 37.47, 37.75, 38.54, 39.9667, 43.03, 44.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": ["", "Os cliques cessaram. A fábrica continua funcionando... sozinha.", "Os cliques cessaram. A fábrica continua funcionando... sozinha.", "", "As máquinas ainda produzem carinho... mas pra quem?", "As máquinas ainda produzem carinho... mas pra quem?", "", "Tudo parece certo... mas ao mesmo tempo, errado.", "Tudo parece certo... mas ao mesmo tempo, errado.", "", "Talvez nada tenha acabado. Talvez só tenha ficado... vazio.", "Talvez nada tenha acabado. Talvez só tenha ficado... vazio.", "", "O gato não está mais lá.", "O gato não está mais lá.", "", "", "Final NEUTRO: “Silêncio”", "Final NEUTRO: “Silêncio”", ""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NeutralFinal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(38.51, 39.99, 42.9333, 44),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(574, 944), Vector2(574, 571), Vector2(574, 571), Vector2(574, 944)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0gq3"]
+_data = {
+&"RESET": SubResource("Animation_x0gq3"),
+&"neutro": SubResource("Animation_5wmv3")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_uqkmt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 330)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -733.0
+offset_top = -358.0
+offset_right = 722.0
+offset_bottom = 344.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -11.5
+offset_right = 295.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_5wmv3")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x0gq3")
+}
+autoplay = "neutro"
+
+[node name="Neutral-roomtone-73507" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(464, 230)
+stream = ExtResource("3_x0gq3")
+autoplay = true
+
+[node name="NeutralFinal" type="Sprite2D" parent="."]
+position = Vector2(574, 944)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_41bk0")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

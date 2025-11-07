@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://c48ublbfsv5t2"]
+
+[ext_resource type="Script" uid="uid://cbtp61044ukub" path="res://scripts/final_2.gd" id="1_5jp7p"]
+[ext_resource type="FontFile" uid="uid://lki1yhof7yno" path="res://fonts/Monolite.otf" id="2_hs6a7"]
+[ext_resource type="AudioStream" uid="uid://d1frmrtocogsf" path="res://sound/full-of-hope-115381.mp3" id="3_6n7ds"]
+[ext_resource type="Texture2D" uid="uid://b5mirrcjgem55" path="res://sprites/happy_final/happy_final.png" id="4_q7bpx"]
+
+[sub_resource type="Animation" id="Animation_6n7ds"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(574, 942)]
+}
+
+[sub_resource type="Animation" id="Animation_hs6a7"]
+resource_name = "fim"
+length = 41.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.966667, 4, 5, 5.1, 9.1, 10, 10.1, 15.1, 18.02, 18.1667, 19.98, 21, 21.1, 25.04, 26.99, 27.07, 32.06, 33.98, 34.2, 34.45, 34.95, 40, 41.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": ["", "O tempo passou...As máquinas pararam.Nenhum clique ecoa mais.", "O tempo passou...As máquinas pararam.Nenhum clique ecoa mais.", "", "O gato te observa em silêncio.", "O gato te observa em silêncio.", "", "Ele não precisa mais dos toques, nem da contagem. Você percebe que nunca foi sobre pontos... mas sobre tempo.", "Ele não precisa mais dos toques, nem da contagem. Você percebe que nunca foi sobre pontos... mas sobre tempo.", "", "Tempo juntos.", "Tempo juntos.", "", "Você abre a porta da fábrica. O ar fresco entra, e o gato dá o primeiro passo pra fora.", "Você abre a porta da fábrica. O ar fresco entra, e o gato dá o primeiro passo pra fora.", "", "Ele olha pra trás, mia baixinho, e caminha em direção à luz.", "Ele olha pra trás, mia baixinho, e caminha em direção à luz.", "", "", "Final BOM: “Liberdade”", "Final BOM: “Liberdade”", ""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(36.99, 38.01, 39.54, 39.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(574, 942), Vector2(617, 522), Vector2(617, 522), Vector2(574, 942)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7bpx"]
+_data = {
+&"RESET": SubResource("Animation_6n7ds"),
+&"fim": SubResource("Animation_hs6a7")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5jp7p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 330)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -733.0
+offset_top = -358.0
+offset_right = 722.0
+offset_bottom = 344.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -11.5
+offset_right = 295.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hs6a7")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q7bpx")
+}
+autoplay = "fim"
+
+[node name="Full-of-hope-115381" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(263, 141)
+stream = ExtResource("3_6n7ds")
+autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 942)
+texture = ExtResource("4_q7bpx")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

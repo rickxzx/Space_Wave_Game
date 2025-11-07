@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd42ltjlnhl7n"]
+
+[ext_resource type="Script" uid="uid://d1qj46ci1gcht" path="res://scripts/gatinhos_caindo_random.gd" id="1_uvnux"]
+[ext_resource type="Texture2D" uid="uid://dmlo5kssybhhw" path="res://sprites/gato2.png" id="1_vxhp3"]
+[ext_resource type="Texture2D" uid="uid://ca1oromjckiui" path="res://sprites/gato3.png" id="2_uvnux"]
+[ext_resource type="Texture2D" uid="uid://chu200un4te35" path="res://sprites/gato5.png" id="3_2qmtb"]
+[ext_resource type="Texture2D" uid="uid://bbv24wl4asj06" path="res://sprites/gato6.png" id="4_jl8l8"]
+[ext_resource type="Texture2D" uid="uid://dx3a128fqg0ou" path="res://sprites/gato7.png" id="5_sjtw5"]
+[ext_resource type="Texture2D" uid="uid://ddohboo228mpj" path="res://sprites/gato8.png" id="6_6nye8"]
+
+[sub_resource type="Animation" id="Animation_uvnux"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(101, -187)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vxhp3"]
+resource_name = "caindp"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(101, -187), Vector2(101, 1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2qmtb"]
+_data = {
+&"RESET": SubResource("Animation_uvnux"),
+&"caindp": SubResource("Animation_vxhp3")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(101, -187)
+script = ExtResource("1_uvnux")
+
+[node name="Gato1" type="Sprite2D" parent="Node2D"]
+visible = false
+texture = ExtResource("1_vxhp3")
+
+[node name="Gato2" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_uvnux")
+
+[node name="Gato3" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_2qmtb")
+
+[node name="Gato4" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("4_jl8l8")
+
+[node name="Gato5" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_sjtw5")
+
+[node name="Gato6" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_6nye8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2qmtb")
+}
+autoplay = "caindp"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="Node2D" method="_on_animation_player_animation_finished"]

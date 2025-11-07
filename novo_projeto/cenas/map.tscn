@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceornj6bd6wli"]
+
+[ext_resource type="Texture2D" uid="uid://dds54lg0erse7" path="res://sprites/sky.png" id="1_6mnk4"]
+[ext_resource type="Texture2D" uid="uid://cpb7gp5dif607" path="res://sprites/bird.png" id="2_k4g1n"]
+[ext_resource type="Script" uid="uid://cxho4fbikkui7" path="res://scripts/passarinho.gd" id="2_n6j27"]
+[ext_resource type="Script" uid="uid://cnhlf48vitqb" path="res://scripts/parallax_background.gd" id="3_mcd7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4g1n"]
+radius = 40.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_n6j27")
+
+[node name="Bird" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(254, 282)
+scale = Vector2(0.162109, 0.175781)
+texture = ExtResource("2_k4g1n")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(577, 327)
+limit_top = 0
+limit_bottom = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(262, 276)
+shape = SubResource("CircleShape2D_k4g1n")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+script = ExtResource("3_mcd7d")
+speed = Vector2(-250, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2188, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -403.0
+offset_top = -2.0
+offset_right = 1787.0
+offset_bottom = 666.0
+texture = ExtResource("1_6mnk4")
+stretch_mode = 6
