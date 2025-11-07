@@ -1,0 +1,296 @@
+[gd_scene load_steps=16 format=3 uid="uid://b83u4ijk8ticy"]
+
+[ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="1_8or6t"]
+[ext_resource type="Script" uid="uid://chuiv0hcgk0in" path="res://scripts/nave-player.gd" id="2_unwft"]
+[ext_resource type="Texture2D" uid="uid://e8cqmkrjck6i" path="res://sprite/shield.png" id="3_kthid"]
+[ext_resource type="AudioStream" uid="uid://jf4tl2rhpiqx" path="res://sounds/energy.mp3" id="4_xojfc"]
+[ext_resource type="Texture2D" uid="uid://b4l3m7qde4y17" path="res://sprite/circle.png" id="5_15dsx"]
+
+[sub_resource type="Gradient" id="Gradient_unwft"]
+offsets = PackedFloat32Array(0.357143, 0.863636)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kthid"]
+gradient = SubResource("Gradient_unwft")
+fill = 1
+fill_from = Vector2(0.477064, 0.481651)
+fill_to = Vector2(0.848624, 0.155963)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
+size = Vector2(75, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kthid"]
+size = Vector2(280, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_unwft"]
+radius = 25.4951
+
+[sub_resource type="Animation" id="Animation_xojfc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [25.4951]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CircleField:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.01, 0.01)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CircleField:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CircleField:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CircleField:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:texture_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PointLight2D:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kthid"]
+resource_name = "uti"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25.4951, 1500.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CircleField:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(6.01, 6.01)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CircleField:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.258824), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CircleField:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CircleField:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 6.28319, 1.5708]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PointLight2D:texture_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.01, 50.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PointLight2D:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.905882), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15dsx"]
+_data = {
+&"RESET": SubResource("Animation_xojfc"),
+&"uti": SubResource("Animation_kthid")
+}
+
+[sub_resource type="Gradient" id="Gradient_kthid"]
+offsets = PackedFloat32Array(0.422078, 0.662338)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xojfc"]
+gradient = SubResource("Gradient_kthid")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_unwft")
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D"]
+position = Vector2(-16, 2)
+rotation = 1.57079
+scale = Vector2(3, 3)
+color = Color(0, 1, 0.329412, 1)
+shadow_enabled = true
+shadow_color = Color(0.117647, 0.117647, 0.117647, 1)
+texture = SubResource("GradientTexture2D_kthid")
+
+[node name="nave" type="Sprite2D" parent="Node2D"]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_8or6t")
+
+[node name="Node2D" type="Node2D" parent="Node2D/nave"]
+position = Vector2(-8.74228e-06, -200)
+rotation = -1.5708
+scale = Vector2(5, 5)
+
+[node name="Area2D" type="Area2D" parent="Node2D/nave" groups=["nave"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/nave/Area2D"]
+position = Vector2(2.5, -10)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_unwft")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/nave/Area2D"]
+position = Vector2(-9.99998, 110)
+shape = SubResource("RectangleShape2D_kthid")
+
+[node name="uti" type="Area2D" parent="Node2D/nave" groups=["uti"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/nave/uti"]
+shape = SubResource("CircleShape2D_unwft")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/nave/uti"]
+libraries = {
+&"": SubResource("AnimationLibrary_15dsx")
+}
+
+[node name="uti" type="Timer" parent="Node2D/nave/uti"]
+one_shot = true
+
+[node name="CircleField" type="Sprite2D" parent="Node2D/nave/uti"]
+visible = false
+position = Vector2(-40, 40)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_kthid")
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D/nave/uti"]
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_xojfc")
+texture_scale = 0.01
+
+[node name="Energy" type="AudioStreamPlayer" parent="Node2D/nave/uti"]
+stream = ExtResource("4_xojfc")
+volume_db = -20.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D/nave"]
+z_index = -1
+position = Vector2(0.000832598, 230)
+amount = 15
+texture = ExtResource("5_15dsx")
+lifetime = 0.01
+spread = 147.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 246.0
+scale_amount_min = 0.02
+scale_amount_max = 0.03
+color = Color(1, 0.321569, 0, 0.141176)
+
+[connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
+[connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Node2D/nave/uti/uti" to="Node2D" method="_on_uti_timeout"]

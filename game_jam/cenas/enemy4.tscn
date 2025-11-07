@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7hlwlt6fh3rf"]
+
+[ext_resource type="Texture2D" uid="uid://cefftgorxthno" path="res://sprite/cometa.png" id="1_6vpw6"]
+[ext_resource type="Script" uid="uid://cw3svr31f245k" path="res://scripts/enemy4.gd" id="2_4nmdm"]
+
+[sub_resource type="Gradient" id="Gradient_sbeh8"]
+offsets = PackedFloat32Array(0.415584, 0.649351)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4nmdm"]
+gradient = SubResource("Gradient_sbeh8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_846qe"]
+radius = 77.8095
+
+[sub_resource type="Animation" id="Animation_846qe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Square:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.972549, 0.788235, 0.360784, 0.713726)]
+}
+
+[sub_resource type="Animation" id="Animation_4nmdm"]
+resource_name = "explodir"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Square:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.972549, 0.788235, 0.360784, 0.713726), Color(1, 1, 1, 1), Color(0.972549, 0.788235, 0.360784, 0.713726), Color(1, 1, 1, 1), Color(0.972549, 0.788235, 0.360784, 0.713726), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_biwf3"]
+_data = {
+&"RESET": SubResource("Animation_846qe"),
+&"explodir": SubResource("Animation_4nmdm")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Square" type="Sprite2D" parent="."]
+modulate = Color(0.972549, 0.788235, 0.360784, 0.713726)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_6vpw6")
+script = ExtResource("2_4nmdm")
+
+[node name="PointLight2D" type="PointLight2D" parent="Square"]
+scale = Vector2(9.76666, 10.3)
+energy = 3.0
+texture = SubResource("GradientTexture2D_4nmdm")
+
+[node name="Area2D" type="Area2D" parent="Square" groups=["enemy4"]]
+scale = Vector2(2.3254, 2.45238)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square/Area2D"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_846qe")
+
+[node name="Timer" type="Timer" parent="Square"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Square"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_biwf3")
+}
+
+[connection signal="area_entered" from="Square/Area2D" to="Square" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Square/Timer" to="Square" method="return_dano"]
+[connection signal="animation_finished" from="Square/AnimationPlayer" to="Square" method="_on_animation_player_animation_finished"]
