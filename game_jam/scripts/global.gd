@@ -13,11 +13,15 @@ var bullet_rotation = 0
 var player_position = 0
 var criação = null
 var camera: Camera2D
+var explosão_do_cometa: AudioStreamPlayer2D
+var cam_effects : AnimationPlayer
 var tiros_por_clique = 1
 var life = 3
 var uti_time = 15
 var metranca : bool = false
 var uti_charge : bool = false
+var wave_max = 0
+var paused : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

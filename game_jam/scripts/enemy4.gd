@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 			global_position += velocity * Global.velocity_enemy * delta
 	if explodiu == true and Global.criação != null:
 		if filhos == 0:
+			Global.explosão_do_cometa.play(0)
 			var particula = Global.instance_node(particulas, global_position, Global.criação)
 			particula.rotation_degrees = Global.bullet_rotation 
 			particula.modulate = "f8c95cb6"

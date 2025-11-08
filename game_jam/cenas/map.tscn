@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhcv5yht17qhh"]
+[gd_scene load_steps=34 format=3 uid="uid://bhcv5yht17qhh"]
 
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="1_byug6"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="1_k4g1n"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://j25e0nk8l8pd" path="res://sprite/life.png" id="8_bjhjl"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="12_4iunr"]
 [ext_resource type="Script" uid="uid://hw63sewig2np" path="res://scripts/powerup_spawn.gd" id="12_v2wd5"]
+[ext_resource type="AudioStream" uid="uid://d13ym0h3cwqey" path="res://sounds/explode.mp3" id="14_ssnxa"]
+[ext_resource type="Script" uid="uid://b2nfokss4wciv" path="res://scripts/pause.gd" id="15_qi725"]
+[ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="16_v73jy"]
 
 [sub_resource type="Environment" id="Environment_byug6"]
 background_mode = 3
@@ -157,8 +160,62 @@ shader = ExtResource("12_4iunr")
 size = Vector2(1280, 720)
 center_offset = Vector3(640, 360, 0)
 
+[sub_resource type="Animation" id="Animation_v73jy"]
+resource_name = "freeze"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.531973, 0.756806, 1, 1), Color(0.531973, 0.756806, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wjlm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p7ef8"]
+resource_name = "metra"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96, 3.99, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.720097, 0.685639, 1), Color(1, 0.720097, 0.685639, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7ef8"]
+_data = {
+&"RESET": SubResource("Animation_wjlm5"),
+&"freeze": SubResource("Animation_v73jy"),
+&"metra": SubResource("Animation_p7ef8")
+}
+
 [node name="Node2D" type="Node2D"]
-modulate = Color(0, 0, 0, 1)
+metadata/_edit_horizontal_guides_ = [-22.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -238,10 +295,10 @@ text = "Life:
 "
 
 [node name="score" type="Label" parent="UI"]
-offset_left = 582.0
-offset_top = 27.0
-offset_right = 637.0
-offset_bottom = 50.0
+offset_left = 576.0
+offset_top = 30.0
+offset_right = 631.0
+offset_bottom = 53.0
 theme_override_fonts/font = ExtResource("4_n6j27")
 
 [node name="score" type="Label" parent="UI/score"]
@@ -520,9 +577,9 @@ text = "Return"
 [node name="Label" type="Label" parent="UI"]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
-offset_left = 375.0
+offset_left = 380.0
 offset_top = 285.0
-offset_right = 785.0
+offset_right = 790.0
 offset_bottom = 373.0
 theme_override_fonts/font = ExtResource("6_x8rq7")
 theme_override_font_sizes/font_size = 100
@@ -564,6 +621,90 @@ material = SubResource("ShaderMaterial_v2wd5")
 position = Vector2(-2, 0)
 scale = Vector2(0.900781, 0.9)
 mesh = SubResource("QuadMesh_csfwj")
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(273, 222)
+stream = ExtResource("14_ssnxa")
+volume_db = -20.0
+
+[node name="pause" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_qi725")
+
+[node name="ColorRect" type="ColorRect" parent="pause"]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 653.0
+color = Color(0, 0, 0, 0.862745)
+
+[node name="Label" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 335.0
+offset_right = 603.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_font_sizes/font_size = 0
+text = "EXIT"
+
+[node name="Label2" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 311.0
+offset_right = 615.0
+offset_bottom = 334.0
+theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_font_sizes/font_size = 0
+text = "RESUME"
+
+[node name="[" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 303.0
+offset_right = 585.0
+offset_bottom = 326.0
+text = "["
+
+[node name="]" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 303.0
+offset_right = 658.0
+offset_bottom = 326.0
+text = "]"
+
+[node name="[2" type="Label" parent="pause"]
+visible = false
+layout_mode = 0
+offset_left = 557.0
+offset_top = 328.0
+offset_right = 597.0
+offset_bottom = 351.0
+text = "["
+
+[node name="]2" type="Label" parent="pause"]
+visible = false
+layout_mode = 0
+offset_left = 603.0
+offset_top = 328.0
+offset_right = 643.0
+offset_bottom = 351.0
+text = "]"
+
+[node name="Selection" type="AudioStreamPlayer" parent="pause"]
+stream = ExtResource("16_v73jy")
+volume_db = -10.0
+
+[node name="efeitos" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p7ef8")
+}
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_spawn_timeout"]
 [connection signal="pressed" from="UI/Button" to="spawner" method="next_wave"]

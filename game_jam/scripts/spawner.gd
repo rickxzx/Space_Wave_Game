@@ -12,9 +12,11 @@ var primeiro4 : bool = false
 var primeiro5 : bool = false
 var loja_button : bool = false
 @onready var screen_size = get_viewport_rect().size
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	Global.cam_effects = $"../efeitos"
 	Global.WAVE = 1
+	Global.explosão_do_cometa = $"../Explode"
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"../UI/loja2".visible = false
 	Global.life = 3
@@ -24,11 +26,20 @@ func _ready() -> void:
 	Global.inimigos_quant = 4
 	Global.score = 0
 	Global.uti_charge = false
+	Global.metranca = false
+	Global.time_z1 = false
+	Global.wave = true
+	Global.wave2 = true
+	Global.time_z = false
+	Global.uti_charge = false
+
 func _exit_tree():
 	Global.criação = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if Global.WAVE >= Global.wave_max:
+		Global.wave_max = Global.WAVE
 	if Global.uti_charge == true:
 		$"../UI/alert".visible = true
 	if Global.uti_charge == false:
@@ -46,8 +57,10 @@ func _process(_delta: float) -> void:
 	$"../UI/inimigos".text = str(Global.inimigos_gerados)
 	$"../UI/score".text = str(Global.score)
 	$"../UI/loja2/Label".text = "Score: " + str(Global.score)
-	if Global.life >= 0:
+	if Global.life >= 1:
 		$"../UI/life".text = str(Global.life)
+	if Global.life <= 0:
+		$"../UI/life".text = str(0)
 
 
 func _on_spawn_timeout() -> void:

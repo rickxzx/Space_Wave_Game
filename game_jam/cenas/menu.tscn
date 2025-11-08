@@ -1,9 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5r0kpx75arwv"]
+[gd_scene load_steps=15 format=3 uid="uid://c5r0kpx75arwv"]
 
 [ext_resource type="Script" uid="uid://caic7t1qmli4" path="res://scripts/menu.gd" id="1_hsu4v"]
 [ext_resource type="FontFile" uid="uid://bgaw5ui56kmhm" path="res://fonts/Evil Empire.otf" id="1_nbnbt"]
 [ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="2_hsu4v"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="4_mmoso"]
+[ext_resource type="AudioStream" uid="uid://er5jtgiqgske" path="res://sounds/entrou.mp3" id="5_qcnrj"]
+[ext_resource type="AudioStream" uid="uid://dxweena6kpypm" path="res://sounds/saiu.mp3" id="6_qygre"]
+[ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="7_6l0hd"]
+[ext_resource type="AudioStream" uid="uid://cek56us5y3sme" path="res://sounds/menu-sound.mp3" id="8_qygre"]
 
 [sub_resource type="Animation" id="Animation_nxpqr"]
 length = 0.001
@@ -235,3 +239,22 @@ text = "Press \"Space\""
 material = SubResource("ShaderMaterial_qvcyk")
 scale = Vector2(0.9, 0.9)
 mesh = SubResource("QuadMesh_hsu4v")
+
+[node name="Entrou" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(311, 420)
+stream = ExtResource("5_qcnrj")
+
+[node name="Saiu" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(314, 446)
+stream = ExtResource("6_qygre")
+
+[node name="Selection" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(340, 443)
+stream = ExtResource("7_6l0hd")
+
+[node name="Menu-sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(368, 426)
+stream = ExtResource("8_qygre")
+autoplay = true
+
+[connection signal="finished" from="Menu-sound" to="." method="_on_menusound_finished"]

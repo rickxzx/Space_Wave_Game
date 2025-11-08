@@ -25,14 +25,27 @@ func _exit_tree():
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("PowerUP") and Global.metranca == true:
 		metra = true
+		Global.cam_effects.play("metra")
 		await get_tree().create_timer(5).timeout
 		Global.metranca = false
 		metra = false
 	if Input.is_action_just_pressed("PowerUP") and Global.time_z1 == true:
 		Global.time_z1 = false
 		Global.time_z = true
+		Global.cam_effects.play("freeze")
+		$nave/Frezzing.play(0)
 		await get_tree().create_timer(3).timeout
 		Global.time_z = false
+
+func wait_timers(seconds: float) -> void:
+	var t = Timer.new()
+	t.wait_time = seconds
+	t.one_shot = true
+	t.process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_child(t)
+	t.start()
+	await t.timeout
+	t.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,7 +64,7 @@ func _process(delta: float) -> void:
 		var explo = explosion.instantiate()
 		$"..".add_child(explo)
 		explo.global_position = $".".global_position
-		await get_tree().create_timer(1).timeout
+		await wait_timers(1)
 		get_tree().reload_current_scene()
 	velocity.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	velocity.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
@@ -83,12 +96,28 @@ func screen_wrap():
 func tomou_dano(area: Area2D) -> void:
 	if area.is_in_group("enemy_1"):
 		Global.life -= 1
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
 	if area.is_in_group("enemy_2"):
 		Global.life -= 2
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
 	if area.is_in_group("enemy_3"):
 		Global.life -= 3
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
 	if area.is_in_group("enemy4"):
 		Global.life -= 1
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
 	if area.is_in_group("cura1"):
 		if Global.life <= 9:
 			Global.life += 1

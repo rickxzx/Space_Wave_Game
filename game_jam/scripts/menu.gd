@@ -15,10 +15,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if clique == 1 and tran == false:
+			$Entrou.play(0)
 			$Control/AnimationPlayer.play("saida")
 			await get_tree().create_timer(0.5).timeout
 			get_tree().change_scene_to_file("res://cenas/map.tscn") 
 		if clique == 3 and tran == false:
+			$Saiu.play(0)
 			$Control/AnimationPlayer.play("saida")
 			await get_tree().create_timer(0.5).timeout
 			get_tree().quit()
@@ -31,6 +33,7 @@ func _process(_delta: float) -> void:
 			$"Control/1".visible = false
 			$"Control/2".visible = true
 			$"Control/3".visible = false
+			$Selection.play(0)
 			await get_tree().create_timer(0.3).timeout
 			clique = 2
 			clicou = false
@@ -38,6 +41,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("ui_right") and clique == 2:
 			tran = true
 			clicou = true
+			$Selection.play(0)
 			$"Control/>".visible = false
 			$"Control/<".visible = true
 			$"Control/1".visible = false
@@ -50,6 +54,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("ui_left") and clique == 2:
 			tran = true
 			clicou = true
+			$Selection.play(0)
 			$"Control/>".visible = true
 			$"Control/<".visible = false
 			$"Control/1".visible = true
@@ -61,6 +66,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("ui_left") and clique == 3:
 			tran = true
 			clicou = true
+			$Selection.play(0)
 			$"Control/>".visible = true
 			$"Control/<".visible = true
 			$"Control/3".visible = false
@@ -69,3 +75,7 @@ func _process(_delta: float) -> void:
 			clique = 2
 			tran = false
 			clicou = false
+
+
+func _on_menusound_finished() -> void:
+	$"Menu-sound".play(0)
