@@ -2,6 +2,7 @@ extends Sprite2D
 var speed = randi_range(130, 190)
 var filhos = 1
 var velocity = Vector2()
+var stun : bool = false
 var life = 1
 var explodiu : bool = false
 @onready var particulas = preload("res://cenas/particula_2.tscn")
@@ -20,10 +21,14 @@ func _process(delta: float) -> void:
 	if Global.player != null:
 		velocity = global_position.direction_to(Global.player.global_position)
 	if !explodiu:
-		if Global.time_z == false:
+		if Global.time_z == false and stun == false:
 			global_position += velocity * speed * delta
-		if Global.time_z == true:
+		if Global.time_z == true and stun == false:
 			global_position += velocity * Global.velocity_enemy * delta
+		if Global.time_z == false and stun == true:
+			global_position -= velocity * 300 * delta
+		if Global.time_z == true and stun == true:
+			global_position -= velocity * 50 * delta
 	if explodiu == true and Global.criação != null:
 		if filhos == 0:
 			Global.explosão_do_cometa.play(0)
@@ -40,6 +45,13 @@ func return_dano() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("uti"):
+		$Area2D.queue_free()
+		$AnimationPlayer.play("explodir")
+		explodiu = true
+		life -= 10
+		$".".modulate = "f8c9aab6"
+		$Timer.start(0.1)
 	if area.is_in_group("bullets"):
 		explodiu = true
 		life -= 1
@@ -48,13 +60,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			$AnimationPlayer.play("explodir")
 		$".".modulate = "f8c9aab6"
 		$Timer.start(0.1)
-	if area.is_in_group("uti"):
-		$Area2D.queue_free()
-		$AnimationPlayer.play("explodir")
-		explodiu = true
-		life -= 10
-		$".".modulate = "f8c9aab6"
-		$Timer.start(0.1)
+		stun = true
+		await get_tree().create_timer(0.1).timeout
+		stun = false
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:

@@ -2,6 +2,7 @@ extends Sprite2D
 var speed = randi_range(150, 160)
 var chance = randi_range(1,5)
 var velocity = Vector2()
+var stun : bool = false
 @export var life = 2
 @onready var particulas = preload("res://cenas/particula.tscn")
 @onready var cura = preload("res://cenas/cura__simples.tscn")
@@ -12,10 +13,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Global.player != null:
 		velocity = global_position.direction_to(Global.player.global_position)
-	if Global.time_z == false:
+	if Global.time_z == false and stun == false:
 		global_position += velocity * speed * delta
-	if Global.time_z == true:
+	if Global.time_z == true and stun == false:
 		global_position += velocity * Global.velocity_enemy * delta
+	if Global.time_z == false and stun == true:
+		global_position -= velocity * 220 * delta
+	if Global.time_z == true and stun == true:
+		global_position -= velocity * 50 * delta
 	if life <= 0 and Global.criação != null:
 		Global.explosão_do_cometa.play(0)
 		var particula = Global.instance_node(particulas, global_position, Global.criação)
@@ -29,14 +34,17 @@ func _process(delta: float) -> void:
 	look_at(Global.player_position * -1)
 
 func tomou_dano(area: Area2D) -> void:
-	if area.is_in_group("bullets"):
-		life -= 1
-		$".".modulate = "aa30b3b6"
-		$Timer.start(0.1)
 	if area.is_in_group("uti"):
 		life -= 10
 		$".".modulate = "aa30b3b6"
 		$Timer.start(0.1)
+	if area.is_in_group("bullets"):
+		life -= 1
+		$".".modulate = "aa30b3b6"
+		$Timer.start(0.1)
+		stun = true
+		await get_tree().create_timer(0.1).timeout
+		stun = false
 
 
 func cor_white() -> void:
