@@ -20,7 +20,10 @@ func _process(delta: float) -> void:
 	if Global.player != null:
 		velocity = global_position.direction_to(Global.player.global_position)
 	if !explodiu:
-		global_position += velocity * speed * delta
+		if Global.time_z == false:
+			global_position += velocity * speed * delta
+		if Global.time_z == true:
+			global_position += velocity * Global.velocity_enemy * delta
 	if explodiu == true and Global.criação != null:
 		if filhos == 0:
 			var particula = Global.instance_node(particulas, global_position, Global.criação)

@@ -217,6 +217,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D"]
+modulate = Color(0.544974, 0.544974, 0.544974, 1)
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("2_unwft")
@@ -281,13 +282,14 @@ volume_db = -20.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D/nave"]
 z_index = -1
-position = Vector2(0.000832598, 230)
+position = Vector2(0.000814498, 225)
+rotation = 1.57079
 amount = 15
 texture = ExtResource("5_15dsx")
 lifetime = 0.01
-spread = 147.0
+spread = 8.82
 gravity = Vector2(0, 0)
-initial_velocity_max = 246.0
+initial_velocity_max = 518.73
 scale_amount_min = 0.02
 scale_amount_max = 0.03
 color = Color(1, 0.321569, 0, 0.141176)
@@ -299,6 +301,8 @@ scale = Vector2(5, 5)
 stream = ExtResource("6_8v4ht")
 volume_db = -10.0
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
 [connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="_on_animation_player_animation_finished"]

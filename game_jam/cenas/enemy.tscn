@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c62pn5cbiwf3"]
 
 [ext_resource type="Texture2D" uid="uid://cefftgorxthno" path="res://sprite/cometa.png" id="1_sbeh8"]
-[ext_resource type="Script" uid="uid://b8rjua4kwvfvp" path="res://scripts/square.gd" id="2_sbeh8"]
+[ext_resource type="Script" uid="uid://b8rjua4kwvfvp" path="res://scripts/enemy.gd" id="2_sbeh8"]
 
 [sub_resource type="Gradient" id="Gradient_sbeh8"]
 offsets = PackedFloat32Array(0.415584, 0.649351)

@@ -13,7 +13,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Global.player != null:
 		velocity = global_position.direction_to(Global.player.global_position)
-	global_position += velocity * speed * delta
+	if Global.time_z == false:
+		global_position += velocity * speed * delta
+	if Global.time_z == true:
+		global_position += velocity * Global.velocity_enemy * delta
 	if life <= 0 and Global.criação != null:
 		var particula = Global.instance_node(particulas, global_position, Global.criação)
 		if chance == 3:

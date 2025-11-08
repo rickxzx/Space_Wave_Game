@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bhcv5yht17qhh"]
+[gd_scene load_steps=27 format=3 uid="uid://bhcv5yht17qhh"]
 
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="1_byug6"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="1_k4g1n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://e8cqmkrjck6i" path="res://sprite/shield.png" id="7_ui24j"]
 [ext_resource type="Texture2D" uid="uid://j25e0nk8l8pd" path="res://sprite/life.png" id="8_bjhjl"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="12_4iunr"]
+[ext_resource type="Script" uid="uid://hw63sewig2np" path="res://scripts/powerup_spawn.gd" id="12_v2wd5"]
 
 [sub_resource type="Environment" id="Environment_byug6"]
 background_mode = 3
@@ -147,44 +148,6 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_4iunr"),
 &"fade_in": SubResource("Animation_csfwj")
-}
-
-[sub_resource type="Animation" id="Animation_ssnxa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(49, -201)]
-}
-
-[sub_resource type="Animation" id="Animation_v2wd5"]
-resource_name = "powerup"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(49, -201), Vector2(1084, -178), Vector2(49, -201)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qi725"]
-_data = {
-&"RESET": SubResource("Animation_ssnxa"),
-&"powerup": SubResource("Animation_v2wd5")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v2wd5"]
@@ -584,18 +547,14 @@ libraries = {
 autoplay = "fade_in"
 
 [node name="powerup" type="Node2D" parent="."]
+script = ExtResource("12_v2wd5")
 
 [node name="Node2D" type="Node2D" parent="powerup"]
 position = Vector2(49, -201)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="powerup"]
-libraries = {
-&"": SubResource("AnimationLibrary_qi725")
-}
-autoplay = "powerup"
-
 [node name="powerup" type="Timer" parent="powerup"]
-wait_time = 2.0
+wait_time = 5.0
+one_shot = true
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -613,3 +572,4 @@ mesh = SubResource("QuadMesh_csfwj")
 [connection signal="pressed" from="UI/loja2/uti/buy_uti" to="UI/loja2" method="_on_buy_uti_pressed"]
 [connection signal="pressed" from="UI/loja2/life/buy_life" to="UI/loja2" method="_on_buy_life_pressed"]
 [connection signal="pressed" from="UI/loja2/return" to="spawner" method="_on_return_pressed"]
+[connection signal="timeout" from="powerup/powerup" to="powerup" method="_on_powerup_timeout"]

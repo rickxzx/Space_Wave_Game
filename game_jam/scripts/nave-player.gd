@@ -2,8 +2,11 @@ extends Node2D
 var speed = 500
 var velocity = Vector2()
 @onready var bullet = preload("res://cenas/bullet.tscn")
+@onready var explosion = preload("res://cenas/nave_explosion.tscn")
 var screen_size = Vector2()
 var camera = Global.camera
+var morto : bool = false
+var metra : bool = false
 var uti_charge : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +22,18 @@ func _ready() -> void:
 func _exit_tree():
 	Global.player = null
 
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("PowerUP") and Global.metranca == true:
+		metra = true
+		await get_tree().create_timer(5).timeout
+		Global.metranca = false
+		metra = false
+	if Input.is_action_just_pressed("PowerUP") and Global.time_z1 == true:
+		Global.time_z1 = false
+		Global.time_z = true
+		await get_tree().create_timer(3).timeout
+		Global.time_z = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	screen_wrap()
@@ -32,20 +47,26 @@ func _process(delta: float) -> void:
 			$nave/uti/AnimationPlayer.play("uti")
 			$nave/uti/CollisionShape2D.disabled = false
 	if Global.life <= 0:
+		morto = true
+		var explo = explosion.instantiate()
+		$"..".add_child(explo)
+		explo.global_position = $".".global_position
+		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
 	velocity.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	velocity.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	global_position += speed * velocity * delta
+	if morto == false:
+		global_position += speed * velocity * delta
 	var mouse = get_global_mouse_position() 
 	look_at(mouse)
 	if Input.is_action_just_pressed("LMB") and Global.wave == true:
-		if Global.metranca == false:
+		if metra == false:
 			for i in range(Global.tiros_por_clique):
 				var _shoot = bullet.instantiate()
 				$"..".add_child(_shoot)
 				call_deferred("_setup_bullet", _shoot)
 	if Input.is_action_pressed("LMB") and Global.wave == true:
-		if Global.metranca == true:
+		if metra == true:
 			for i in range(Global.tiros_por_clique):
 				var _shoot = bullet.instantiate()
 				$"..".add_child(_shoot)

@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://ci2icqe6ldabe"]
+[gd_scene load_steps=4 format=3 uid="uid://ci2icqe6ldabe"]
+
+[ext_resource type="Script" uid="uid://ceyrqvr5kck02" path="res://scripts/power_up_1.gd" id="1_grqlu"]
+[ext_resource type="Texture2D" uid="uid://b4l3m7qde4y17" path="res://sprite/circle.png" id="1_r7ns4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grqlu"]
+radius = 173.159
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_grqlu")
+
+[node name="Circle" type="Sprite2D" parent="."]
+modulate = Color(1.29953e-06, 0.693896, 0.298604, 0.8)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_r7ns4")
+
+[node name="Area2D" type="Area2D" parent="Circle" groups=["power1"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle/Area2D"]
+shape = SubResource("CircleShape2D_grqlu")
+
+[node name="PointLight2D" type="PointLight2D" parent="Circle"]
+position = Vector2(-3.99998, 3.00001)
+scale = Vector2(0.57, 0.5575)
+color = Color(0, 1, 0, 1)
+energy = 12.0
+shadow_enabled = true
+texture = ExtResource("1_r7ns4")
+texture_scale = 2.0
+
+[node name="Timer" type="Timer" parent="Circle"]
+wait_time = 10.0
+autostart = true
+
+[connection signal="area_entered" from="Circle/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Circle/Timer" to="." method="_on_timer_timeout"]

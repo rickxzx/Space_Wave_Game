@@ -23,7 +23,6 @@ func _ready() -> void:
 	Global.inimigos_gerados = 0
 	Global.inimigos_quant = 4
 	Global.score = 0
-	Global.player_life = 0
 	Global.uti_charge = false
 func _exit_tree():
 	Global.criação = null
@@ -47,7 +46,7 @@ func _process(_delta: float) -> void:
 	$"../UI/inimigos".text = str(Global.inimigos_gerados)
 	$"../UI/score".text = str(Global.score)
 	$"../UI/loja2/Label".text = "Score: " + str(Global.score)
-	if Global.player_life >= 0:
+	if Global.life >= 0:
 		$"../UI/life".text = str(Global.life)
 
 
