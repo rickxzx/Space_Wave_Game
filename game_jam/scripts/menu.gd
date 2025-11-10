@@ -5,6 +5,8 @@ var clicou : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	clicou = true
+	tran = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	clique = 1
 	$"Control/1".visible = true
@@ -79,3 +81,9 @@ func _process(_delta: float) -> void:
 
 func _on_menusound_finished() -> void:
 	$"Menu-sound".play(0)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "entrada":
+		clicou = false
+		tran = false

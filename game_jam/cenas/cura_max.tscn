@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7xaw5i510fiy"]
+[gd_scene load_steps=12 format=3 uid="uid://7xaw5i510fiy"]
 
 [ext_resource type="Texture2D" uid="uid://j25e0nk8l8pd" path="res://sprite/life.png" id="1_cmsyc"]
 [ext_resource type="Script" uid="uid://dxfys2vmu52e8" path="res://scripts/life_max.gd" id="2_cx6n5"]
@@ -16,10 +16,57 @@ fill_from = Vector2(0.5, 0.5)
 radius = 836.321
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx6n5"]
-radius = 2094.19
+radius = 1220.49
+
+[sub_resource type="Animation" id="Animation_x3p1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cx6n5"]
+resource_name = "up_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og2to"]
+_data = {
+&"RESET": SubResource("Animation_x3p1u"),
+&"up_down": SubResource("Animation_cx6n5")
+}
+
+[sub_resource type="Gradient" id="Gradient_cx6n5"]
+offsets = PackedFloat32Array(0.266234, 0.305195, 0.701299)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x3p1u"]
+gradient = SubResource("Gradient_cx6n5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D"]
 modulate = Color(1, 0.439216, 0.568627, 1)
+z_index = -1
 
 [node name="Life" type="Sprite2D" parent="."]
 scale = Vector2(0.023, 0.023)
@@ -42,7 +89,17 @@ shape = SubResource("CircleShape2D_x3p1u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Life/Area2D2"]
 shape = SubResource("CircleShape2D_cx6n5")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Life"]
+libraries = {
+&"": SubResource("AnimationLibrary_og2to")
+}
+autoplay = "up_down"
+
 [node name="Timer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0.239216, 1)
+texture = SubResource("GradientTexture2D_x3p1u")
 
 [connection signal="area_entered" from="Life/Area2D" to="Life" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Life/Area2D2" to="Life" method="seguir"]

@@ -16,7 +16,7 @@ script = ExtResource("1_tuc02")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 50
 lifetime = 0.1
-spread = 107.75
+spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 1000.0
 initial_velocity_max = 1000.0

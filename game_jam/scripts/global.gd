@@ -22,6 +22,13 @@ var metranca : bool = false
 var uti_charge : bool = false
 var wave_max = 0
 var paused : bool = false
+var power_effect : AnimationPlayer
+var local_anim : bool = false
+var life_sound : AudioStreamPlayer2D
+var power_up_sound : AudioStreamPlayer2D
+var carregado : AudioStreamPlayer2D
+var alert_fade_in : AnimationPlayer
+var progress = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

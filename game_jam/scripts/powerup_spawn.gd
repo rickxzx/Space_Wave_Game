@@ -2,7 +2,7 @@ extends Node2D
 @onready var power1 = preload("res://cenas/PowerUp1.tscn")
 @onready var power2 = preload("res://cenas/PowerUp2.tscn")
 var chance = randi_range(1,20)
-var timen = randi_range(5,15)
+var timen = randi_range(5,8)
 var positionn = randi_range(49 ,1084)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,17 +16,17 @@ func _process(delta: float) -> void:
 
 func _on_powerup_timeout() -> void:
 	chance = randi_range(1,20)
-	timen = randi_range(5,15)
+	timen = randi_range(5,8)
 	positionn = randi_range(49 ,1084)
 	$Node2D.position.x = positionn
 	$powerup.start(timen)
-	if Global.WAVE >= 15:
-		if chance >= 17:
+	if Global.WAVE >= 10 and Global.wave2 == true:
+		if chance >= 16 and Global.time_z1 == false:
 			var po1 = power1.instantiate()
 			add_child(po1)
 			po1.global_position = $Node2D.global_position
 			po1.global_position.x = $Node2D.global_position.x
-		if chance <= 3:
+		if chance <= 4 and Global.metranca == false:
 			var po2 = power2.instantiate()
 			add_child(po2)
 			po2.global_position = $Node2D.global_position

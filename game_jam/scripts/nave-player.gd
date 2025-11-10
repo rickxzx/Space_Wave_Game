@@ -1,5 +1,6 @@
 extends Node2D
 var speed = 500
+var n = 0
 var velocity = Vector2()
 @onready var bullet = preload("res://cenas/bullet.tscn")
 @onready var explosion = preload("res://cenas/nave_explosion.tscn")
@@ -8,6 +9,7 @@ var camera = Global.camera
 var morto : bool = false
 var metra : bool = false
 var uti_charge : bool = false
+var clicou : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$nave/uti/uti.start(Global.uti_time)
@@ -23,19 +25,38 @@ func _exit_tree():
 	Global.player = null
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("PowerUP") and Global.metranca == true:
-		metra = true
-		Global.cam_effects.play("metra")
-		await get_tree().create_timer(5).timeout
-		Global.metranca = false
-		metra = false
-	if Input.is_action_just_pressed("PowerUP") and Global.time_z1 == true:
-		Global.time_z1 = false
-		Global.time_z = true
-		Global.cam_effects.play("freeze")
-		$nave/Frezzing.play(0)
-		await get_tree().create_timer(3).timeout
-		Global.time_z = false
+	if !morto:
+		if Input.is_action_just_pressed("PowerUP") and Global.metranca == true:
+			if !clicou:
+				clicou = true
+				await wait_timers(0.1)
+				clicou = false
+				Global.metranca = false
+				if Global.time_z1 == true:
+					Global.local_anim = true
+					Global.power_effect.play("powerup1_volta")
+				if Global.time_z1 == false:
+					Global.power_effect.play("power1_volta")
+				metra = true
+				Global.cam_effects.play("metra")
+				await get_tree().create_timer(5).timeout
+				metra = false
+		if Input.is_action_just_pressed("PowerUP") and Global.time_z1 == true:
+			if !clicou:
+				clicou = true
+				await wait_timers(0.1)
+				clicou = false
+				Global.time_z1 = false
+				if Global.local_anim == true:
+					Global.local_anim = false
+					Global.power_effect.play("power2_volta")
+				if Global.metranca == false and Global.local_anim == false:
+					Global.power_effect.play("power2_volta")
+				Global.time_z = true
+				Global.cam_effects.play("freeze")
+				$nave/Frezzing.play(0)
+				await get_tree().create_timer(3).timeout
+				Global.time_z = false
 
 func wait_timers(seconds: float) -> void:
 	var t = Timer.new()
@@ -53,9 +74,11 @@ func _process(delta: float) -> void:
 	Global.bullet_rotation = $".".rotation_degrees
 	Global.player_position = $".".global_position
 	if Input.is_action_just_pressed("UTI") and uti_charge:
-		if Global.wave2 == true:
+		if Global.wave2 == true and !morto:
+			Global.progress = 0
 			uti_charge = false
 			Global.uti_charge = false
+			Global.alert_fade_in.play("progress")
 			$nave/uti/Energy.play(15.7)
 			$nave/uti/AnimationPlayer.play("uti")
 			$nave/uti/CollisionShape2D.disabled = false
@@ -121,6 +144,7 @@ func tomou_dano(area: Area2D) -> void:
 	if area.is_in_group("cura1"):
 		if Global.life <= 9:
 			Global.life += 1
+		Global.score += 50
 	if area.is_in_group("cura2"):
 		if Global.life <= 9:
 			if Global.life == 7:
@@ -131,12 +155,14 @@ func tomou_dano(area: Area2D) -> void:
 				Global.life += 1
 			if Global.life <= 6:
 				Global.life += 3
+		Global.score += 150
 
 
 func _on_uti_timeout() -> void:
 	uti_charge = true
 	Global.uti_charge = true
-
+	Global.alert_fade_in.play("alert")
+	Global.carregado.play(0)
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	if uti_charge == false:
@@ -146,3 +172,7 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 func _on_music_theme_finished() -> void:
 	$nave/MusicTheme.play(0)
+
+
+func uti_acabou(anim_name: StringName) -> void:
+	Global.uti_charge = false

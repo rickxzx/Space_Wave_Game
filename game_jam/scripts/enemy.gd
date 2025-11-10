@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 		particula.modulate = "0030b3cc"
 		Global.inimigos_gerados -= 1
 		Global.score += 100
-		queue_free()
+		$"..".queue_free()
 	look_at(Global.player_position * -1)
 
 func tomou_dano(area: Area2D) -> void:

@@ -14,8 +14,15 @@ var loja_button : bool = false
 @onready var screen_size = get_viewport_rect().size
 
 func _ready() -> void:
+	Global.alert_fade_in = $"../UI/alert/AnimationPlayer"
+	Global.life_sound = $"../LifeCollected"
+	Global.power_up_sound = $"../PowerUp"
+	Global.carregado = $"../Charged"
+	Global.power_effect = $"../UI/powers_ui/powers_ui"
 	Global.cam_effects = $"../efeitos"
 	Global.WAVE = 1
+	Global.tiros_por_clique = 1
+	Global.uti_time = 15
 	Global.explosão_do_cometa = $"../Explode"
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"../UI/loja2".visible = false
@@ -40,8 +47,6 @@ func _exit_tree():
 func _process(_delta: float) -> void:
 	if Global.WAVE >= Global.wave_max:
 		Global.wave_max = Global.WAVE
-	if Global.uti_charge == true:
-		$"../UI/alert".visible = true
 	if Global.uti_charge == false:
 		$"../UI/alert".visible = false
 	if Global.inimigos_gerados == 0 and clicou == false:
@@ -54,6 +59,8 @@ func _process(_delta: float) -> void:
 		$"../UI/loja".visible = false
 		$"../UI/Button".visible = false
 		$"../UI/loja2/return".visible = false
+	$"../UI/best_wave".text = str(Global.wave_max)
+	$"../UI/current_wave".text = str(Global.WAVE)
 	$"../UI/inimigos".text = str(Global.inimigos_gerados)
 	$"../UI/score".text = str(Global.score)
 	$"../UI/loja2/Label".text = "Score: " + str(Global.score)
@@ -140,6 +147,7 @@ func next_wave() -> void:
 func _on_loja_pressed() -> void:
 	loja_button = true
 	Global.wave = false
+	$"../UI/loja/Loja".play(0.35)
 	$"../UI/AnimationPlayer".play("loja1")
 	$"../UI/score".visible = false
 	$"../UI/Button".visible = false
@@ -150,6 +158,7 @@ func _on_loja_pressed() -> void:
 func _on_return_pressed() -> void:
 	loja_button = false
 	Global.wave = true
+	$"../UI/loja/Loja".play(0.35)
 	$"../UI/AnimationPlayer".play("loja2")
 	$"../UI/score".visible = true
 	$"../UI/Button".visible = true

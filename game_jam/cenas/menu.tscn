@@ -104,6 +104,8 @@ script = ExtResource("1_hsu4v")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
+offset_top = -725.0
+offset_bottom = -725.0
 
 [node name="title" type="Label" parent="Control"]
 layout_mode = 0
@@ -176,10 +178,10 @@ text = "by: rick"
 [node name="1" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 550.0
-offset_top = 376.0
-offset_right = 592.0
-offset_bottom = 399.0
+offset_left = 549.0
+offset_top = 369.0
+offset_right = 591.0
+offset_bottom = 392.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "PLAY"
 
@@ -196,30 +198,33 @@ text = "Press \"Space\""
 visible = false
 layout_mode = 0
 offset_left = 530.0
-offset_top = 312.0
+offset_top = 296.0
 offset_right = 595.0
-offset_bottom = 335.0
+offset_bottom = 319.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "Controls"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Control/2"]
 layout_mode = 0
-offset_left = -36.0
+offset_left = -87.0
 offset_top = 19.0
-offset_right = 120.0
-offset_bottom = 73.0
+offset_right = 163.0
+offset_bottom = 111.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "\"WASD\" = move
+text = "\"WASD\" or \"Arrows\" = move
 \"E\" = Energy Shield
-\"Q\" = Use Powerup 
-\"LMB\" = Shoot"
+\"Q\" or \"Space\" = Use Powerup 
+\"LMB\" = Shoot
+\"ESC\" or \"P\" = pause"
+horizontal_alignment = 1
 
 [node name="3" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 540.0
+offset_left = 549.0
 offset_top = 369.0
-offset_right = 580.0
+offset_right = 589.0
 offset_bottom = 392.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "EXIT"
@@ -257,4 +262,5 @@ position = Vector2(368, 426)
 stream = ExtResource("8_qygre")
 autoplay = true
 
+[connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="finished" from="Menu-sound" to="." method="_on_menusound_finished"]

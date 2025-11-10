@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		particula.modulate = "00ffb3b6"
 		Global.inimigos_gerados -= 1
 		Global.score += 200
-		queue_free()
+		$"..".queue_free()
 	look_at(Global.player_position * -1)
 
 func cor_white() -> void:

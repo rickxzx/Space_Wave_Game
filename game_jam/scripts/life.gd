@@ -10,6 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$"../PointLight2D".global_position = $".".global_position
 	velocity = global_position.direction_to(Global.player.global_position)
 	if seguindo:
 		global_position += velocity * speed * delta
@@ -17,13 +18,15 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("nave"):
-		queue_free()
+		Global.life_sound.play(0)
+		$"..".queue_free()
 
 
 func _on_timer_timeout() -> void:
-	queue_free()
+	$"..".queue_free()
 
 
 func seguir(area: Area2D) -> void:
 	if area.is_in_group("nave"):
+		$AnimationPlayer.pause()
 		seguindo = true
