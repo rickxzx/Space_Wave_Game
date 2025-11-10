@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bhcv5yht17qhh"]
+[gd_scene load_steps=64 format=3 uid="uid://bhcv5yht17qhh"]
 
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="1_byug6"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="1_k4g1n"]
@@ -18,11 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://b4l3m7qde4y17" path="res://sprite/circle.png" id="12_wjlm5"]
 [ext_resource type="AudioStream" uid="uid://dhu54iepnlsdy" path="res://sounds/life_collected.mp3" id="13_0uhg1"]
 [ext_resource type="AudioStream" uid="uid://dmtxfi73pogy8" path="res://sounds/pay.mp3" id="13_k1fsl"]
+[ext_resource type="Texture2D" uid="uid://cd0vsj18chkqt" path="res://sprite/return_texture.png" id="14_4nnop"]
 [ext_resource type="AudioStream" uid="uid://d13ym0h3cwqey" path="res://sounds/explode.mp3" id="14_ssnxa"]
 [ext_resource type="AudioStream" uid="uid://dgttiekn8eg0q" path="res://sounds/power_up.mp3" id="14_w6cvg"]
 [ext_resource type="Script" uid="uid://b2nfokss4wciv" path="res://scripts/pause.gd" id="15_qi725"]
 [ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="16_v73jy"]
 [ext_resource type="AudioStream" uid="uid://djcjlywx8f2v0" path="res://sounds/charged.mp3" id="20_w6cvg"]
+[ext_resource type="FontFile" uid="uid://bgaw5ui56kmhm" path="res://fonts/Evil Empire.otf" id="24_1sjtj"]
+[ext_resource type="Script" uid="uid://b7vx22ny3xexq" path="res://scripts/morte.gd" id="24_kiyt3"]
 
 [sub_resource type="Environment" id="Environment_byug6"]
 background_mode = 3
@@ -31,6 +34,8 @@ glow_bloom = 0.1
 glow_hdr_threshold = 4.0
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 256.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4nnop"]
 
 [sub_resource type="Animation" id="Animation_8mxwj"]
 length = 0.001
@@ -567,6 +572,117 @@ _data = {
 &"metra": SubResource("Animation_p7ef8")
 }
 
+[sub_resource type="Animation" id="Animation_bbdss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/game_over:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(380, -116)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rijvs"]
+resource_name = "morte"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.196078, 0.196078, 0.196078, 0), Color(0.196078, 0.196078, 0.196078, 0.921569)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/game_over:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.333333, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(380, -467), Vector2(380, 182)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mp0j6"]
+_data = {
+&"RESET": SubResource("Animation_bbdss"),
+&"morte": SubResource("Animation_rijvs")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kiyt3"]
+
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-22.0]
 
@@ -581,6 +697,7 @@ color = Color(0.0562916, 0.0562916, 0.0562916, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(20.2526, 23.2548)
 scale = Vector2(0.0119926, 0.0161679)
 texture = ExtResource("1_k4g1n")
@@ -715,6 +832,7 @@ offset_bottom = 633.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4nnop")
 text = "Next Wave"
 
 [node name="Impact" type="AudioStreamPlayer" parent="UI/Button"]
@@ -918,7 +1036,6 @@ texture = ExtResource("12_wjlm5")
 texture_scale = 2.0
 
 [node name="loja2" type="Node2D" parent="UI"]
-visible = false
 position = Vector2(0, -848)
 script = ExtResource("6_q2lhc")
 
@@ -1134,11 +1251,14 @@ scale = Vector2(0.08, 0.0630209)
 texture = ExtResource("8_bjhjl")
 
 [node name="return" type="Button" parent="UI/loja2"]
-offset_left = 1079.0
-offset_top = 9.0
-offset_right = 1140.0
-offset_bottom = 40.0
-text = "Return"
+modulate = Color(1, 1, 1, 0.866667)
+offset_left = 1105.0
+offset_top = -0.999999
+offset_right = 1625.0
+offset_bottom = 519.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("14_4nnop")
+flat = true
 
 [node name="Pay" type="AudioStreamPlayer" parent="UI/loja2"]
 stream = ExtResource("13_k1fsl")
@@ -1290,6 +1410,88 @@ position = Vector2(519, 411)
 stream = ExtResource("20_w6cvg")
 volume_db = 3.0
 
+[node name="morte" type="Node2D" parent="."]
+process_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="morte"]
+libraries = {
+&"": SubResource("AnimationLibrary_mp0j6")
+}
+
+[node name="Control" type="Control" parent="morte"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("24_kiyt3")
+
+[node name="ColorRect" type="ColorRect" parent="morte/Control"]
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 653.0
+color = Color(1, 1, 1, 0)
+
+[node name="game_over" type="Label" parent="morte/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = -136.0
+offset_right = 768.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("24_1sjtj")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[node name="game_over" type="Label" parent="morte/Control/game_over"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 408.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0.632226, 6.37732e-07, 2.40654e-07, 1)
+theme_override_fonts/font = ExtResource("24_1sjtj")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[node name="reset" type="Button" parent="morte/Control/game_over"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 142.0
+offset_right = 222.0
+offset_bottom = 173.0
+theme_override_colors/font_focus_color = Color(0.787759, 0.787759, 0.787759, 1)
+theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiyt3")
+text = "RESET"
+flat = true
+
+[node name="menu" type="Button" parent="morte/Control/game_over"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 104.0
+offset_right = 270.0
+offset_bottom = 135.0
+theme_override_colors/font_focus_color = Color(0.787759, 0.787759, 0.787759, 1)
+theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kiyt3")
+text = "RETURN TO MENU"
+flat = true
+
+[node name="Label" type="Label" parent="morte/Control/game_over"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 415.0
+offset_right = 290.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("6_x8rq7")
+horizontal_alignment = 1
+
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_spawn_timeout"]
 [connection signal="pressed" from="UI/Button" to="spawner" method="next_wave"]
 [connection signal="pressed" from="UI/loja" to="spawner" method="_on_loja_pressed"]
@@ -1298,3 +1500,5 @@ volume_db = 3.0
 [connection signal="pressed" from="UI/loja2/life/buy_life" to="UI/loja2" method="_on_buy_life_pressed"]
 [connection signal="pressed" from="UI/loja2/return" to="spawner" method="_on_return_pressed"]
 [connection signal="timeout" from="powerup/powerup" to="powerup" method="_on_powerup_timeout"]
+[connection signal="pressed" from="morte/Control/game_over/reset" to="morte/Control" method="_on_reset_pressed"]
+[connection signal="pressed" from="morte/Control/game_over/menu" to="morte/Control" method="_on_menu_pressed"]

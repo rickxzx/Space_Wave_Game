@@ -28,7 +28,7 @@ scale = Vector2(10.1593, 9.14957)
 energy = 3.0
 texture = SubResource("GradientTexture2D_en3x7")
 
-[node name="Area2D" type="Area2D" parent="enemy3" groups=["enemy_3"]]
+[node name="Area2D" type="Area2D" parent="enemy3" groups=["enemy_3", "inimigo"]]
 scale = Vector2(2.41889, 2.17847)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy3/Area2D"]

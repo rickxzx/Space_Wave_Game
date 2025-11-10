@@ -1,4 +1,5 @@
 extends Node
+var morto : bool = false
 var player = null
 var wave : bool = true
 var wave2 : bool = true
@@ -29,6 +30,7 @@ var power_up_sound : AudioStreamPlayer2D
 var carregado : AudioStreamPlayer2D
 var alert_fade_in : AnimationPlayer
 var progress = 0
+var morte_anim : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

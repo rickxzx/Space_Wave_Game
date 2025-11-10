@@ -13,7 +13,14 @@ var primeiro5 : bool = false
 var loja_button : bool = false
 @onready var screen_size = get_viewport_rect().size
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("next_wave") and !Global.wave2:
+		if !loja_button:
+			wave_next()
+
 func _ready() -> void:
+	Global.wave2 = true
+	get_tree().paused = false
 	Global.alert_fade_in = $"../UI/alert/AnimationPlayer"
 	Global.life_sound = $"../LifeCollected"
 	Global.power_up_sound = $"../PowerUp"
@@ -36,7 +43,6 @@ func _ready() -> void:
 	Global.metranca = false
 	Global.time_z1 = false
 	Global.wave = true
-	Global.wave2 = true
 	Global.time_z = false
 	Global.uti_charge = false
 
@@ -50,9 +56,9 @@ func _process(_delta: float) -> void:
 	if Global.uti_charge == false:
 		$"../UI/alert".visible = false
 	if Global.inimigos_gerados == 0 and clicou == false:
-		Global.wave2 = false
 		if primeiro == true:
 			if loja_button == false:
+				Global.wave2 = false
 				$"../UI/loja".visible = true
 				$"../UI/Button".visible = true
 	if clicou == true:
@@ -71,7 +77,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_spawn_timeout() -> void:
-	Global.wave2 = true
 	if primeiro3 == true:
 		primeiro4 = true
 	if primeiro == false:
@@ -128,6 +133,10 @@ func _on_spawn_timeout() -> void:
 
 
 func next_wave() -> void:
+	wave_next()
+
+func wave_next() -> void:
+	Global.wave2 = true
 	current_wave += 1
 	Global.WAVE += 1
 	$"../UI/Label".text = "WAVE: " + str(current_wave)

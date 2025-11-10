@@ -4,6 +4,7 @@ var uti_time_falta = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.progress = 0
+	Global.morte_anim = $"../morte/AnimationPlayer"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.uti_charge == false:

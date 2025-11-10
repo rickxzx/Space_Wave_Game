@@ -12,6 +12,7 @@ var uti_charge : bool = false
 var clicou : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.morto = false
 	$nave/uti/uti.start(Global.uti_time)
 	$nave/uti/CollisionShape2D.disabled = true
 	Global.player = self
@@ -74,39 +75,46 @@ func _process(delta: float) -> void:
 	Global.bullet_rotation = $".".rotation_degrees
 	Global.player_position = $".".global_position
 	if Input.is_action_just_pressed("UTI") and uti_charge:
-		if Global.wave2 == true and !morto:
-			Global.progress = 0
-			uti_charge = false
-			Global.uti_charge = false
-			Global.alert_fade_in.play("progress")
-			$nave/uti/Energy.play(15.7)
-			$nave/uti/AnimationPlayer.play("uti")
-			$nave/uti/CollisionShape2D.disabled = false
-	if Global.life <= 0:
+		if !Global.paused:
+			if Global.wave2 == true and !morto:
+				Global.progress = 0
+				uti_charge = false
+				Global.uti_charge = false
+				Global.alert_fade_in.play("progress")
+				$nave/uti/Energy.play(15.7)
+				$nave/uti/AnimationPlayer.play("uti")
+				$nave/uti/CollisionShape2D.disabled = false
+	if Global.life <= 0 and morto == false:
 		morto = true
+		Global.morto = true
+		get_tree().paused = true
+		$PointLight2D.queue_free()
 		var explo = explosion.instantiate()
 		$"..".add_child(explo)
 		explo.global_position = $".".global_position
+		Global.morte_anim.play("morte")
 		await wait_timers(1)
-		get_tree().reload_current_scene()
 	velocity.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	velocity.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	if morto == false:
+	if morto == false and !Global.paused:
 		global_position += speed * velocity * delta
 	var mouse = get_global_mouse_position() 
-	look_at(mouse)
+	if !morto and !Global.paused:
+		look_at(mouse)
 	if Input.is_action_just_pressed("LMB") and Global.wave == true:
-		if metra == false:
-			for i in range(Global.tiros_por_clique):
-				var _shoot = bullet.instantiate()
-				$"..".add_child(_shoot)
-				call_deferred("_setup_bullet", _shoot)
+		if !Global.paused:
+			if metra == false and !morto:
+				for i in range(Global.tiros_por_clique):
+					var _shoot = bullet.instantiate()
+					$"..".add_child(_shoot)
+					call_deferred("_setup_bullet", _shoot)
 	if Input.is_action_pressed("LMB") and Global.wave == true:
-		if metra == true:
-			for i in range(Global.tiros_por_clique):
-				var _shoot = bullet.instantiate()
-				$"..".add_child(_shoot)
-				call_deferred("_setup_bullet", _shoot)
+		if !Global.paused:
+			if metra == true and !morto:
+				for i in range(Global.tiros_por_clique):
+					var _shoot = bullet.instantiate()
+					$"..".add_child(_shoot)
+					call_deferred("_setup_bullet", _shoot)
 
 func _setup_bullet(bullet_instance):
 	bullet_instance.global_position = $nave/Node2D.global_position
@@ -117,28 +125,37 @@ func screen_wrap():
 	global_position.y = wrapf(global_position.y, 0, screen_size.y)
 
 func tomou_dano(area: Area2D) -> void:
+	if area.is_in_group("inimigo"):
+		$"..".modulate = "ff503fc2"
+		$nave/Hurt.play(0)
+		await wait_timers(0.1)
+		$"..".modulate = "8b8b8b"
 	if area.is_in_group("enemy_1"):
 		Global.life -= 1
 		if Global.life <= 0:
 			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
 			$nave/Scream.play(0)
 	if area.is_in_group("enemy_2"):
 		Global.life -= 2
 		if Global.life <= 0:
 			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
 			$nave/Scream.play(0)
 	if area.is_in_group("enemy_3"):
 		Global.life -= 3
 		if Global.life <= 0:
 			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
 			$nave/Scream.play(0)
 	if area.is_in_group("enemy4"):
 		Global.life -= 1
 		if Global.life <= 0:
 			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
 			$nave/Scream.play(0)
 	if area.is_in_group("cura1"):
