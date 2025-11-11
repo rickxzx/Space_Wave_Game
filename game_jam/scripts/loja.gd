@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	if life_quant <= 5 and life_quant >= 1:
 		$life/Label.text = "Price: " + str(price_life) + "  X" + str(life_quant)
 		$life/buy_life.visible = true
-	if Global.tiros_por_clique >= 5:
+	if Global.tiros_por_clique > 5:
 		$shoot/Label.text = "SOLD OUT"
 		$shoot/buy.visible = false
 	if Global.uti_time <= 3:

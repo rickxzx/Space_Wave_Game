@@ -31,6 +31,9 @@ var carregado : AudioStreamPlayer2D
 var alert_fade_in : AnimationPlayer
 var progress = 0
 var morte_anim : AnimationPlayer
+var power_up1 = false
+var power_up2 = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
