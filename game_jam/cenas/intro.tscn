@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvbviru0qcve7"]
+[gd_scene load_steps=10 format=3 uid="uid://cvbviru0qcve7"]
 
 [ext_resource type="Script" uid="uid://dctgd2eqm3707" path="res://scripts/intro.gd" id="1_ib757"]
 [ext_resource type="AudioStream" uid="uid://b3qyqp66opi1x" path="res://sounds/intro.mp3" id="2_pxn1m"]
 [ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="4_3v3x3"]
+[ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="4_ib757"]
 
 [sub_resource type="Animation" id="Animation_gtdnf"]
 length = 0.001
@@ -40,6 +41,13 @@ _data = {
 &"RESET": SubResource("Animation_gtdnf"),
 &"intro": SubResource("Animation_mrg8v")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxn1m"]
+shader = ExtResource("4_ib757")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vufmf"]
+size = Vector2(1280, 720)
+center_offset = Vector3(640, 360, 0)
 
 [node name="intro" type="Node2D"]
 script = ExtResource("1_ib757")
@@ -130,5 +138,12 @@ theme_override_fonts/font = ExtResource("4_3v3x3")
 theme_override_font_sizes/font_size = 30
 text = "presents"
 horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Camera2D/CanvasLayer"]
+material = SubResource("ShaderMaterial_pxn1m")
+scale = Vector2(0.9, 0.9)
+mesh = SubResource("QuadMesh_vufmf")
 
 [connection signal="animation_finished" from="Camera2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

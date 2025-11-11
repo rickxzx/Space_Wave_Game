@@ -18,11 +18,15 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if clique == 1 and tran == false:
 			$Entrou.play(0)
+			$Control/Control/selection.play("play")
+			await get_tree().create_timer(1).timeout
 			$Control/AnimationPlayer.play("saida")
 			await get_tree().create_timer(0.5).timeout
 			get_tree().change_scene_to_file("res://cenas/map.tscn") 
 		if clique == 3 and tran == false:
 			$Saiu.play(0)
+			$Control/Control/selection.play("exit")
+			await get_tree().create_timer(1).timeout
 			$Control/AnimationPlayer.play("saida")
 			await get_tree().create_timer(0.5).timeout
 			get_tree().quit()
