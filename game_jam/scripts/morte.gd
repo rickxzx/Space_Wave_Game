@@ -9,7 +9,7 @@ func _ready() -> void:
 	$game_over.position.y = -400 
 	await get_tree().create_timer(0.3).timeout
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_up") and item == 2:
 		if Global.morto:
 			item = 1
@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 			get_tree().reload_current_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 		$game_over/Label.text = "Your best wave: " + str(Global.wave_max) + "\n" + "Your death wave: " + str(Global.WAVE)
 
 func _on_reset_pressed() -> void:

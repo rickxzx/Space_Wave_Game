@@ -1613,6 +1613,7 @@ text = "]"
 
 [node name="[2" type="Label" parent="morte/Control/Control"]
 visible = false
+layout_mode = 0
 offset_left = 546.0
 offset_top = 323.0
 offset_right = 586.0
@@ -1621,6 +1622,7 @@ text = "["
 
 [node name="]2" type="Label" parent="morte/Control/Control"]
 visible = false
+layout_mode = 0
 offset_left = 608.0
 offset_top = 323.0
 offset_right = 648.0

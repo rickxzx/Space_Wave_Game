@@ -13,7 +13,7 @@ var primeiro5 : bool = false
 var loja_button : bool = false
 @onready var screen_size = get_viewport_rect().size
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("next_wave") and !Global.wave2:
 		if !loja_button:
 			wave_next()

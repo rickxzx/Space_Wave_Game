@@ -269,9 +269,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_15dsx")
 }
 
-[node name="uti" type="Timer" parent="Node2D/nave/uti"]
-one_shot = true
-
 [node name="CircleField" type="Sprite2D" parent="Node2D/nave/uti"]
 visible = false
 position = Vector2(-40, 40)
@@ -341,7 +338,5 @@ volume_db = -10.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
-[connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="uti_acabou"]
-[connection signal="timeout" from="Node2D/nave/uti/uti" to="Node2D" method="_on_uti_timeout"]
 [connection signal="finished" from="Node2D/nave/MusicTheme" to="Node2D" method="_on_music_theme_finished"]

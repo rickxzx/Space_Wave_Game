@@ -3,7 +3,7 @@ var paused : bool = false
 var timen := 0.2
 var item_selected = 1
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("esc") and Global.morto == false:
 		item_selected = 1
 		$"[2".visible = false

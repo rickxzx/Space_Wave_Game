@@ -45,10 +45,10 @@ current = true
 stream = ExtResource("3_h4vll")
 volume_db = -20.0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="Circle"]
 wait_time = 5.0
 autostart = true
 
 [connection signal="screen_exited" from="Circle/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="area_entered" from="Circle/Area2D" to="." method="deu_dano"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Circle/Timer" to="." method="_on_timer_timeout"]
