@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bhcv5yht17qhh"]
+[gd_scene load_steps=65 format=3 uid="uid://bhcv5yht17qhh"]
 
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="1_byug6"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="1_k4g1n"]
@@ -566,6 +566,8 @@ shader = ExtResource("12_4iunr")
 size = Vector2(1280, 720)
 center_offset = Vector3(640, 360, 0)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ysjc"]
+
 [sub_resource type="Animation" id="Animation_wjlm5"]
 length = 0.001
 tracks/0/type = "value"
@@ -887,6 +889,7 @@ theme_override_fonts/font = ExtResource("4_n6j27")
 
 [node name="power_up2" type="ProgressBar" parent="UI/powerup_uso"]
 modulate = Color(1, 0, 0.137255, 0.894118)
+layout_mode = 0
 offset_left = 475.0
 offset_top = 80.0
 offset_right = 683.0
@@ -1466,6 +1469,24 @@ text = "]"
 stream = ExtResource("16_v73jy")
 volume_db = -10.0
 
+[node name="resume" type="Button" parent="pause"]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 309.0
+offset_right = 617.0
+offset_bottom = 325.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8ysjc")
+flat = true
+
+[node name="exit" type="Button" parent="pause"]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 335.0
+offset_right = 602.0
+offset_bottom = 347.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8ysjc")
+flat = true
+
 [node name="efeitos" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_p7ef8")
@@ -1575,5 +1596,7 @@ horizontal_alignment = 1
 [connection signal="pressed" from="UI/loja2/life/buy_life" to="UI/loja2" method="_on_buy_life_pressed"]
 [connection signal="pressed" from="UI/loja2/return" to="spawner" method="_on_return_pressed"]
 [connection signal="timeout" from="powerup/powerup" to="powerup" method="_on_powerup_timeout"]
+[connection signal="pressed" from="pause/resume" to="pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="pause/exit" to="pause" method="_on_exit_pressed"]
 [connection signal="pressed" from="morte/Control/game_over/reset" to="morte/Control" method="_on_reset_pressed"]
 [connection signal="pressed" from="morte/Control/game_over/menu" to="morte/Control" method="_on_menu_pressed"]

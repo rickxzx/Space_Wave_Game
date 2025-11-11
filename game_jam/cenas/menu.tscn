@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5r0kpx75arwv"]
+[gd_scene load_steps=23 format=3 uid="uid://c5r0kpx75arwv"]
 
 [ext_resource type="Script" uid="uid://caic7t1qmli4" path="res://scripts/menu.gd" id="1_hsu4v"]
 [ext_resource type="FontFile" uid="uid://bgaw5ui56kmhm" path="res://fonts/Evil Empire.otf" id="1_nbnbt"]
 [ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="2_hsu4v"]
+[ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="4_6l0hd"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="4_mmoso"]
 [ext_resource type="AudioStream" uid="uid://er5jtgiqgske" path="res://sounds/entrou.mp3" id="5_qcnrj"]
 [ext_resource type="AudioStream" uid="uid://dxweena6kpypm" path="res://sounds/saiu.mp3" id="6_qygre"]
@@ -84,6 +85,183 @@ _data = {
 &"RESET": SubResource("Animation_nxpqr"),
 &"entrada": SubResource("Animation_hsu4v"),
 &"saida": SubResource("Animation_qvcyk")
+}
+
+[sub_resource type="Animation" id="Animation_s4mth"]
+resource_name = "1"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(503, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.27742]
+}
+
+[sub_resource type="Animation" id="Animation_806vj"]
+resource_name = "2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(503, 543), Vector2(576, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.27742, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lvcsh"]
+resource_name = "3"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 542), Vector2(659, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.326377]
+}
+
+[sub_resource type="Animation" id="Animation_ktxou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(503, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.27742]
+}
+
+[sub_resource type="Animation" id="Animation_6l0hd"]
+resource_name = "3-2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(659, 544), Vector2(576, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.326377, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fv5wp"]
+resource_name = "2-1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 544), Vector2(503, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.27742]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fv5wp"]
+_data = {
+&"1": SubResource("Animation_s4mth"),
+&"2": SubResource("Animation_806vj"),
+&"2-1": SubResource("Animation_fv5wp"),
+&"3": SubResource("Animation_lvcsh"),
+&"3-2": SubResource("Animation_6l0hd"),
+&"RESET": SubResource("Animation_ktxou")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvcyk"]
@@ -176,7 +354,6 @@ theme_override_font_sizes/font_size = 40
 text = "by: rick"
 
 [node name="1" type="Label" parent="Control"]
-visible = false
 layout_mode = 0
 offset_left = 549.0
 offset_top = 369.0
@@ -237,6 +414,50 @@ offset_right = 85.0
 offset_bottom = 41.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "Press \"Space\""
+
+[node name="Control" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="play" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 584.0
+offset_right = 515.0
+offset_bottom = 607.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "PLAY"
+
+[node name="control" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = 537.0
+offset_top = 584.0
+offset_right = 620.0
+offset_bottom = 607.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "CONTROL"
+
+[node name="exit" type="Label" parent="Control/Control"]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 584.0
+offset_right = 687.0
+offset_bottom = 607.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "EXIT"
+
+[node name="nave" type="Sprite2D" parent="Control/Control"]
+position = Vector2(503, 543)
+rotation = 0.27742
+scale = Vector2(0.1294, 0.145094)
+texture = ExtResource("4_6l0hd")
+
+[node name="selection" type="AnimationPlayer" parent="Control/Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_fv5wp")
+}
+autoplay = "1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

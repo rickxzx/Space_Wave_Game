@@ -28,7 +28,7 @@ func _exit_tree():
 	Global.player = null
 
 func _input(_event: InputEvent) -> void:
-	if !morto:
+	if !morto and !Global.paused:
 		if Input.is_action_just_pressed("PowerUP") and Global.metranca == true:
 			if !clicou and !metra:
 				clicou = true

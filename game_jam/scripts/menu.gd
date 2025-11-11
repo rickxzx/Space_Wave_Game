@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 			get_tree().quit()
 	if clicou == false:
 		if Input.is_action_just_pressed("ui_right") and clique == 1:
+			$Control/Control/selection.play("2")
 			tran = true
 			clicou = true
 			$"Control/>".visible = true
@@ -41,6 +42,7 @@ func _process(_delta: float) -> void:
 			clicou = false
 			tran = false
 		if Input.is_action_just_pressed("ui_right") and clique == 2:
+			$Control/Control/selection.play("3")
 			tran = true
 			clicou = true
 			$Selection.play(0)
@@ -54,6 +56,7 @@ func _process(_delta: float) -> void:
 			tran = false
 			clicou = false
 		if Input.is_action_just_pressed("ui_left") and clique == 2:
+			$Control/Control/selection.play("2-1")
 			tran = true
 			clicou = true
 			$Selection.play(0)
@@ -66,6 +69,7 @@ func _process(_delta: float) -> void:
 			tran = false
 			clicou = false
 		if Input.is_action_just_pressed("ui_left") and clique == 3:
+			$Control/Control/selection.play("3-2")
 			tran = true
 			clicou = true
 			$Selection.play(0)
