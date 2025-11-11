@@ -891,9 +891,9 @@ theme_override_fonts/font = ExtResource("4_n6j27")
 modulate = Color(1, 0, 0.137255, 0.894118)
 layout_mode = 0
 offset_left = 475.0
-offset_top = 80.0
+offset_top = 57.0
 offset_right = 683.0
-offset_bottom = 100.0
+offset_bottom = 77.0
 theme_override_fonts/font = ExtResource("4_n6j27")
 
 [node name="Button" type="Button" parent="UI"]
@@ -991,9 +991,9 @@ libraries = {
 
 [node name="powerup1" type="ColorRect" parent="UI/powers_ui"]
 offset_left = 1073.0
-offset_top = 704.0
+offset_top = 716.0
 offset_right = 1147.0
-offset_bottom = 803.0
+offset_bottom = 815.0
 color = Color(0.0196078, 0.0196078, 0.0196078, 0.917647)
 metadata/_edit_use_anchors_ = true
 
@@ -1052,10 +1052,10 @@ texture = ExtResource("12_wjlm5")
 texture_scale = 2.0
 
 [node name="powerup2" type="ColorRect" parent="UI/powers_ui"]
-offset_left = 1073.0
-offset_top = 718.0
-offset_right = 1147.0
-offset_bottom = 817.0
+offset_left = 993.0
+offset_top = 680.0
+offset_right = 1067.0
+offset_bottom = 779.0
 color = Color(0.0196078, 0.0196078, 0.0196078, 0.917647)
 metadata/_edit_use_anchors_ = true
 
@@ -1587,6 +1587,45 @@ offset_right = 290.0
 offset_bottom = 448.0
 theme_override_fonts/font = ExtResource("6_x8rq7")
 horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="morte/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="[" type="Label" parent="morte/Control/Control"]
+visible = false
+layout_mode = 0
+offset_left = 500.0
+offset_top = 286.0
+offset_right = 540.0
+offset_bottom = 309.0
+text = "["
+
+[node name="]" type="Label" parent="morte/Control/Control"]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 286.0
+offset_right = 693.0
+offset_bottom = 309.0
+text = "]"
+
+[node name="[2" type="Label" parent="morte/Control/Control"]
+visible = false
+offset_left = 546.0
+offset_top = 323.0
+offset_right = 586.0
+offset_bottom = 346.0
+text = "["
+
+[node name="]2" type="Label" parent="morte/Control/Control"]
+visible = false
+offset_left = 608.0
+offset_top = 323.0
+offset_right = 648.0
+offset_bottom = 346.0
+text = "]"
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_spawn_timeout"]
 [connection signal="pressed" from="UI/Button" to="spawner" method="next_wave"]
