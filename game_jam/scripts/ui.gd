@@ -19,6 +19,16 @@ func uti_timer():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$Label.text = "WAVE: " + str(Global.WAVE)
+	if Global.WAVE % 10 == 0:
+		if Global.extra:
+			$Label/Label.text = "POINTS EXTRAS"
+			$Label/Label.position.x = 50
+		if !Global.extra:
+			$Label/Label.text = "BOSS WAVE"
+			$Label/Label.position.x = 110
+	if Global.WAVE % 10 != 0:
+		$Label/Label.text = " "
 	uti_timer()
 	if Global.uti_charge == false and Global.wave2:
 		uti_time_falta += delta

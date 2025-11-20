@@ -1,5 +1,6 @@
 extends Node2D
 var speed = 500
+var atirou : bool = false
 var n = 0
 var velocity = Vector2()
 @onready var bullet = preload("res://cenas/bullet.tscn")
@@ -106,12 +107,14 @@ func _process(delta: float) -> void:
 	if !morto and !Global.paused:
 		look_at(mouse)
 	if Input.is_action_just_pressed("LMB") and Global.wave == true:
-		if !Global.paused:
-			if metra == false and !morto:
-				for i in range(Global.tiros_por_clique):
-					var _shoot = bullet.instantiate()
-					$"..".add_child(_shoot)
-					call_deferred("_setup_bullet", _shoot)
+		if !atirou:
+			if !Global.paused and Global.wave2:
+				if metra == false and !morto:
+					for i in range(Global.tiros_por_clique):
+						atirou = true
+						var _shoot = bullet.instantiate()
+						$"..".add_child(_shoot)
+						call_deferred("_setup_bullet", _shoot)
 	if Input.is_action_pressed("LMB") and Global.wave == true:
 		if !Global.paused:
 			if metra == true and !morto:
@@ -123,6 +126,8 @@ func _process(delta: float) -> void:
 func _setup_bullet(bullet_instance):
 	bullet_instance.global_position = $nave/Node2D.global_position
 	bullet_instance.rotation = rotation
+	await wait_timers(0.1)
+	atirou = false
 
 func screen_wrap():
 	global_position.x = wrapf(global_position.x, 0, screen_size.x)
@@ -165,6 +170,20 @@ func tomou_dano(area: Area2D) -> void:
 				$nave/MusicTheme.stream_paused = true
 				$nave/NaveExplode.play(0)
 				$nave/Scream.play(0)
+	if area.is_in_group("dano_grav"):
+		Global.life -= 5
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
+	if area.is_in_group("kill"):
+		Global.life -= 11
+		if Global.life <= 0:
+			$nave/Area2D.queue_free()
+			$nave/MusicTheme.stream_paused = true
+			$nave/NaveExplode.play(0)
+			$nave/Scream.play(0)
 	if area.is_in_group("cura1"):
 		if Global.life <= 9:
 			Global.life += 1
@@ -200,3 +219,8 @@ func _on_music_theme_finished() -> void:
 func uti_acabou(_anim_name: StringName) -> void:
 	$nave/uti/CollisionShape2D.disabled = true
 	Global.uti_charge = false
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("dano_grav"):
+		Global.life -= 1

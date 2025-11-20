@@ -18,25 +18,13 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 
 func deu_dano(area: Area2D) -> void:
-	if area.is_in_group("enemy_1"):
+	if area.is_in_group("inimigo"):
 		var particula = Global.instance_node(explomb, global_position, Global.criação)
 		particula.global_position = circle.global_position
 		particula.rotation = Global.bullet_rotation
-		queue_free()
-	if area.is_in_group("enemy_2"):
-		var particula = Global.instance_node(explomb, global_position, Global.criação)
-		particula.global_position = circle.global_position
-		particula.rotation = Global.bullet_rotation
-		queue_free()
-	if area.is_in_group("enemy_3"):
-		var particula = Global.instance_node(explomb, global_position, Global.criação)
-		particula.global_position = circle.global_position
-		particula.rotation = Global.bullet_rotation
-		queue_free()
-	if area.is_in_group("enemy4"):
-		var particula = Global.instance_node(explomb, global_position, Global.criação)
-		particula.global_position = circle.global_position
-		particula.rotation = Global.bullet_rotation
+		Global.dano_do_cometa1.play(0)
+		if Global.extra:
+			Global.score += 500
 		queue_free()
 
 

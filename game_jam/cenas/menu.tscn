@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5r0kpx75arwv"]
+[gd_scene load_steps=30 format=3 uid="uid://c5r0kpx75arwv"]
 
 [ext_resource type="Script" uid="uid://caic7t1qmli4" path="res://scripts/menu.gd" id="1_hsu4v"]
 [ext_resource type="FontFile" uid="uid://bgaw5ui56kmhm" path="res://fonts/Evil Empire.otf" id="1_nbnbt"]
@@ -6,16 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="4_6l0hd"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="4_mmoso"]
 [ext_resource type="AudioStream" uid="uid://er5jtgiqgske" path="res://sounds/entrou.mp3" id="5_qcnrj"]
+[ext_resource type="Texture2D" uid="uid://b4l3m7qde4y17" path="res://sprite/circle.png" id="5_s4mth"]
+[ext_resource type="AudioStream" uid="uid://3u6xbct46r8d" path="res://sounds/woosh.mp3" id="6_806vj"]
 [ext_resource type="AudioStream" uid="uid://dxweena6kpypm" path="res://sounds/saiu.mp3" id="6_qygre"]
 [ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="7_6l0hd"]
 [ext_resource type="AudioStream" uid="uid://cek56us5y3sme" path="res://sounds/menu-sound.mp3" id="8_qygre"]
+[ext_resource type="Texture2D" uid="uid://dci0pn3rryixe" path="res://sprite/settings1.png" id="12_lvcsh"]
 
 [sub_resource type="Animation" id="Animation_nxpqr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/intrada_uai:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,44 +27,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -725)]
-}
 
 [sub_resource type="Animation" id="Animation_hsu4v"]
 resource_name = "entrada"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/intrada_uai:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -725), Vector2(0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qvcyk"]
@@ -70,14 +50,14 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control:position")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -718)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qcnrj"]
@@ -227,6 +207,86 @@ tracks/1/keys = {
 "values": [-0.326377, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_utwjh"]
+resource_name = "4"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(503, 543), Vector2(106, 591)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.27742, -1.74533]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nave/CPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_g1dcb"]
+resource_name = "4-1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nave:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(106, 591), Vector2(503, 543)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nave:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.74533, 0.27742]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nave/CPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
 [sub_resource type="Animation" id="Animation_ktxou"]
 length = 0.001
 tracks/0/type = "value"
@@ -252,6 +312,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.27742]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nave/CPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("nave/Woosh:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ayrqh"]
@@ -280,6 +364,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [-0.326377, 0.490438, 1.46957]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nave/CPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.629671, 0.637125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("nave/Woosh:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_dxv5o"]
 resource_name = "play"
@@ -307,6 +415,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.27742, -1.35438]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nave/CPUParticles2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.628316, 0.63577),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("nave/Woosh:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv5wp"]
 _data = {
@@ -315,6 +447,8 @@ _data = {
 &"2-1": SubResource("Animation_fv5wp"),
 &"3": SubResource("Animation_lvcsh"),
 &"3-2": SubResource("Animation_6l0hd"),
+&"4": SubResource("Animation_utwjh"),
+&"4-1": SubResource("Animation_g1dcb"),
 &"RESET": SubResource("Animation_ktxou"),
 &"exit": SubResource("Animation_ayrqh"),
 &"play": SubResource("Animation_dxv5o")
@@ -328,6 +462,7 @@ size = Vector2(1280, 720)
 center_offset = Vector3(640, 360, 0)
 
 [node name="Control" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,18 +531,8 @@ libraries = {
 }
 autoplay = "entrada"
 
-[node name="intrada_uai" type="Label" parent="Control"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 497.0
-offset_top = 304.0
-offset_right = 645.0
-offset_bottom = 344.0
-theme_override_fonts/font = ExtResource("2_hsu4v")
-theme_override_font_sizes/font_size = 40
-text = "by: rick"
-
 [node name="1" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 549.0
 offset_top = 369.0
@@ -423,15 +548,15 @@ offset_top = 19.0
 offset_right = 84.0
 offset_bottom = 42.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "Press \"Space\""
+text = "Press [Space]"
 
 [node name="2" type="Label" parent="Control"]
 visible = false
 layout_mode = 0
 offset_left = 530.0
-offset_top = 296.0
+offset_top = 280.0
 offset_right = 595.0
-offset_bottom = 319.0
+offset_bottom = 303.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
 text = "Controls"
 horizontal_alignment = 1
@@ -447,7 +572,8 @@ text = "\"WASD\" or \"Arrows\" = move
 \"E\" = Energy Shield
 \"Q\" or \"Space\" = Use Powerup 
 \"LMB\" = Shoot
-\"ESC\" or \"P\" = pause"
+\"ESC\" or \"P\" = Pause
+\"CTRL\" or \"RMB\" = Next wave"
 horizontal_alignment = 1
 
 [node name="3" type="Label" parent="Control"]
@@ -467,7 +593,32 @@ offset_top = 18.0
 offset_right = 85.0
 offset_bottom = 41.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "Press \"Space\""
+text = "Press [Space]"
+
+[node name="4" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 537.0
+offset_top = 369.0
+offset_right = 601.0
+offset_bottom = 392.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "CONFIG"
+
+[node name="Label" type="Label" parent="Control/4"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 19.0
+offset_right = 96.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("2_hsu4v")
+text = "Press [Space]"
+
+[node name="Settings1" type="Sprite2D" parent="Control"]
+modulate = Color(1, 1, 1, 0.752941)
+position = Vector2(40, 607)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("12_lvcsh")
 
 [node name="Control" type="Control" parent="Control"]
 anchors_preset = 0
@@ -506,6 +657,26 @@ position = Vector2(503, 543)
 rotation = 0.27742
 scale = Vector2(0.1294, 0.145094)
 texture = ExtResource("4_6l0hd")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Control/Control/nave"]
+process_mode = 3
+visible = false
+z_index = -1
+position = Vector2(0.000814498, 225)
+rotation = 1.57079
+amount = 15
+texture = ExtResource("5_s4mth")
+lifetime = 0.01
+spread = 8.82
+gravity = Vector2(0, 0)
+initial_velocity_max = 600.0
+scale_amount_min = 0.02
+scale_amount_max = 0.03
+color = Color(1, 0.321569, 0, 0.141176)
+
+[node name="Woosh" type="AudioStreamPlayer" parent="Control/Control/nave"]
+stream = ExtResource("6_806vj")
+volume_db = -15.0
 
 [node name="selection" type="AnimationPlayer" parent="Control/Control"]
 libraries = {

@@ -1,4 +1,6 @@
 extends Node
+var saiu : bool = false
+var sound : bool = true
 var morto : bool = false
 var player = null
 var wave : bool = true
@@ -15,6 +17,7 @@ var player_position = 0
 var criação = null
 var camera: Camera2D
 var explosão_do_cometa: AudioStreamPlayer2D
+var dano_do_cometa1: AudioStreamPlayer
 var cam_effects : AnimationPlayer
 var tiros_por_clique = 1
 var life = 3
@@ -33,6 +36,7 @@ var progress = 0
 var morte_anim : AnimationPlayer
 var power_up1 = false
 var power_up2 = false
+var extra : bool = false
 
 
 # Called when the node enters the scene tree for the first time.

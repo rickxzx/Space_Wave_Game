@@ -42,3 +42,11 @@ func _on_reset_pressed() -> void:
 func _on_menu_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://cenas/menu.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	item = 1
+	$"Control/[".visible = true
+	$"Control/]".visible = true
+	$"Control/[2".visible = false
+	$"Control/]2".visible = false

@@ -3,6 +3,7 @@ extends Node2D
 @onready var enemy2 = preload("res://cenas/enemy2.tscn")
 @onready var enemy3 = preload("res://cenas/enemy3.tscn")
 @onready var enemy4 = preload("res://cenas/enemy4.tscn")
+@onready var boss1 = preload("res://cenas/boss1.tscn")
 var current_wave = 1
 var clicou : bool = false
 var primeiro : bool = false
@@ -19,6 +20,8 @@ func _input(_event: InputEvent) -> void:
 			wave_next()
 
 func _ready() -> void:
+	Global.extra = false
+	Global.dano_do_cometa1 = $"../Explosion-damage1"
 	Global.wave2 = true
 	get_tree().paused = false
 	Global.alert_fade_in = $"../UI/alert/AnimationPlayer"
@@ -51,6 +54,12 @@ func _exit_tree():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if !Global.sound:
+		var bus_index = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(bus_index, true)
+	if Global.sound:
+		var bus_index = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(bus_index, false)
 	if Global.WAVE >= Global.wave_max:
 		Global.wave_max = Global.WAVE
 	if Global.uti_charge == false:
@@ -61,6 +70,7 @@ func _process(_delta: float) -> void:
 				Global.wave2 = false
 				$"../UI/loja".visible = true
 				$"../UI/Button".visible = true
+				Global.extra = false
 	if clicou == true:
 		$"../UI/loja".visible = false
 		$"../UI/Button".visible = false
@@ -136,6 +146,14 @@ func next_wave() -> void:
 	wave_next()
 
 func wave_next() -> void:
+	if (Global.WAVE + 1) % 10 == 0:
+		var chance = randi_range(1,2)
+		if chance == 1:
+			var boss1 = boss1.instantiate()
+			add_child(boss1)
+			boss1.global_position = $"../boss_position".global_position
+		if chance == 2:
+			Global.extra = true
 	Global.wave2 = true
 	current_wave += 1
 	Global.WAVE += 1

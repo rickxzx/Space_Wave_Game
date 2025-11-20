@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb4fgpikh1nup"]
+
+[ext_resource type="Script" uid="uid://cpoxs7127lhe4" path="res://scripts/boss_1.gd" id="1_78wl2"]
+[ext_resource type="Texture2D" uid="uid://b3tveybc0bnqf" path="res://sprite/black_hole.png" id="1_c0ca1"]
+
+[sub_resource type="Gradient" id="Gradient_sbeh8"]
+offsets = PackedFloat32Array(0.415584, 0.649351)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_78wl2"]
+gradient = SubResource("Gradient_sbeh8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78wl2"]
+radius = 130.096
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2ynt"]
+radius = 88.0511
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dx8ej"]
+radius = 49.0408
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_78wl2")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="BlackHole" type="Sprite2D" parent="body"]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c0ca1")
+
+[node name="PointLight2D" type="PointLight2D" parent="body/BlackHole"]
+scale = Vector2(139.524, 147.143)
+energy = 3.0
+texture = SubResource("GradientTexture2D_78wl2")
+texture_scale = 0.2
+
+[node name="BlackHole5" type="Sprite2D" parent="body"]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c0ca1")
+
+[node name="BlackHole2" type="Sprite2D" parent="body"]
+rotation = 1.5708
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c0ca1")
+
+[node name="BlackHole3" type="Sprite2D" parent="body"]
+rotation = 0.785398
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c0ca1")
+
+[node name="BlackHole4" type="Sprite2D" parent="body"]
+rotation = -0.785398
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_c0ca1")
+
+[node name="1" type="Area2D" parent="." groups=["atrair"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1" groups=["atrair"]]
+shape = SubResource("CircleShape2D_78wl2")
+
+[node name="2" type="Area2D" parent="." groups=["dano_grav"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="2" groups=["dano_grav"]]
+shape = SubResource("CircleShape2D_t2ynt")
+
+[node name="3" type="Area2D" parent="." groups=["inimigo", "kill"]]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="3" groups=["kill"]]
+shape = SubResource("CircleShape2D_dx8ej")
+
+[node name="life" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -47.0
+offset_top = -46.0
+offset_right = 48.0
+offset_bottom = -36.0
+show_percentage = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1, -131)
+
+[connection signal="area_entered" from="3" to="." method="tomou_dano"]

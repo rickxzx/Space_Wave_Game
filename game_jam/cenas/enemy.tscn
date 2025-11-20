@@ -31,7 +31,7 @@ texture = SubResource("GradientTexture2D_sbeh8")
 [node name="Area2D" type="Area2D" parent="Square" groups=["enemy_1", "inimigo"]]
 scale = Vector2(2.3254, 2.45238)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Square/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square/Area2D" groups=["inimigo"]]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_wbqij")
 

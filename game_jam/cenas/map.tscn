@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bhcv5yht17qhh"]
+[gd_scene load_steps=66 format=3 uid="uid://bhcv5yht17qhh"]
 
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="1_byug6"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="1_k4g1n"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://b2nfokss4wciv" path="res://scripts/pause.gd" id="15_qi725"]
 [ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="16_v73jy"]
 [ext_resource type="AudioStream" uid="uid://djcjlywx8f2v0" path="res://sounds/charged.mp3" id="20_w6cvg"]
+[ext_resource type="AudioStream" uid="uid://ja17ldp4ysc7" path="res://sounds/explosion-damage1.mp3" id="20_wj2xs"]
 [ext_resource type="FontFile" uid="uid://bgaw5ui56kmhm" path="res://fonts/Evil Empire.otf" id="24_1sjtj"]
 [ext_resource type="Script" uid="uid://b7vx22ny3xexq" path="res://scripts/morte.gd" id="24_kiyt3"]
 
@@ -909,9 +910,11 @@ offset_right = 626.0
 offset_bottom = 633.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.560955, 0.560955, 0.560955, 1)
 theme_override_fonts/font = ExtResource("4_n6j27")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4nnop")
 text = "Next Wave"
+flat = true
 
 [node name="Impact" type="AudioStreamPlayer" parent="UI/Button"]
 stream = ExtResource("5_mcd7d")
@@ -1188,8 +1191,8 @@ offset_top = 33.0
 offset_right = 231.0
 offset_bottom = 87.0
 theme_override_fonts/font = ExtResource("4_n6j27")
-text = "Adds one extra projectile 
-per shot. Increases your 
+text = "Increases your firepower 
+by 1 point. Increases your 
 overall firepower."
 
 [node name="PatoGun" type="Sprite2D" parent="UI/loja2/shoot"]
@@ -1360,6 +1363,15 @@ libraries = {
 }
 autoplay = "wave"
 
+[node name="Label" type="Label" parent="UI/Label"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 96.0
+offset_right = 416.0
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("4_n6j27")
+theme_override_font_sizes/font_size = 40
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
 &"": SubResource("AnimationLibrary_csfwj")
@@ -1394,6 +1406,10 @@ mesh = SubResource("QuadMesh_csfwj")
 position = Vector2(273, 222)
 stream = ExtResource("14_ssnxa")
 volume_db = -10.0
+
+[node name="Explosion-damage1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_wj2xs")
+volume_db = -20.0
 
 [node name="pause" type="Control" parent="."]
 process_mode = 3
@@ -1508,6 +1524,7 @@ volume_db = 3.0
 
 [node name="morte" type="Node2D" parent="."]
 process_mode = 3
+z_index = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="morte"]
 libraries = {
@@ -1629,6 +1646,9 @@ offset_right = 648.0
 offset_bottom = 346.0
 text = "]"
 
+[node name="boss_position" type="Node2D" parent="."]
+position = Vector2(564, -461)
+
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_spawn_timeout"]
 [connection signal="pressed" from="UI/Button" to="spawner" method="next_wave"]
 [connection signal="pressed" from="UI/loja" to="spawner" method="_on_loja_pressed"]
@@ -1639,5 +1659,6 @@ text = "]"
 [connection signal="timeout" from="powerup/powerup" to="powerup" method="_on_powerup_timeout"]
 [connection signal="pressed" from="pause/resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/exit" to="pause" method="_on_exit_pressed"]
+[connection signal="animation_finished" from="morte/AnimationPlayer" to="morte/Control" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="morte/Control/game_over/reset" to="morte/Control" method="_on_reset_pressed"]
 [connection signal="pressed" from="morte/Control/game_over/menu" to="morte/Control" method="_on_menu_pressed"]

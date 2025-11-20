@@ -13,7 +13,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
 func _on_powerup_timeout() -> void:
 	chance = randi_range(1,20)
 	timen = randi_range(5,8)
