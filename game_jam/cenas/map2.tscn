@@ -1,0 +1,207 @@
+[gd_scene load_steps=15 format=3 uid="uid://bbywmwlj0svuo"]
+
+[ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="1_1mrve"]
+[ext_resource type="Script" uid="uid://d13h2yyk1cf8m" path="res://scripts/map_2.gd" id="1_h020n"]
+[ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="2_brot0"]
+[ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="3_8wiw6"]
+[ext_resource type="Script" uid="uid://b2nfokss4wciv" path="res://scripts/pause.gd" id="5_euyfb"]
+[ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="6_m2qc4"]
+[ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="7_icqxs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qe0x"]
+shader = ExtResource("1_1mrve")
+
+[sub_resource type="QuadMesh" id="QuadMesh_brot0"]
+size = Vector2(1280, 720)
+center_offset = Vector3(640, 360, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0edj"]
+
+[sub_resource type="Animation" id="Animation_h020n"]
+resource_name = "fade-in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_euyfb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m2qc4"]
+resource_name = "fade-out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m2qc4"]
+_data = {
+&"RESET": SubResource("Animation_euyfb"),
+&"fade-in": SubResource("Animation_h020n"),
+&"fade-out": SubResource("Animation_m2qc4")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_h020n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+process_mode = 3
+material = SubResource("ShaderMaterial_0qe0x")
+position = Vector2(-2, 0)
+scale = Vector2(0.900781, 0.9)
+mesh = SubResource("QuadMesh_brot0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(582, 329)
+
+[node name="Node2D" parent="." instance=ExtResource("2_brot0")]
+position = Vector2(582, 329)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -778.0
+offset_top = -522.0
+offset_right = -738.0
+offset_bottom = -482.0
+scale = Vector2(66.7076, 37.1106)
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(20.2526, 23.2548)
+scale = Vector2(0.0119926, 0.0161679)
+texture = ExtResource("3_8wiw6")
+
+[node name="pause" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_euyfb")
+
+[node name="ColorRect" type="ColorRect" parent="pause"]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 653.0
+color = Color(0, 0, 0, 0.862745)
+
+[node name="Label" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 335.0
+offset_right = 603.0
+offset_bottom = 358.0
+theme_override_fonts/font = ExtResource("6_m2qc4")
+theme_override_font_sizes/font_size = 0
+text = "EXIT"
+
+[node name="Label2" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 311.0
+offset_right = 615.0
+offset_bottom = 334.0
+theme_override_fonts/font = ExtResource("6_m2qc4")
+theme_override_font_sizes/font_size = 0
+text = "RESUME"
+
+[node name="[" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 303.0
+offset_right = 585.0
+offset_bottom = 326.0
+text = "["
+
+[node name="]" type="Label" parent="pause"]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 303.0
+offset_right = 658.0
+offset_bottom = 326.0
+text = "]"
+
+[node name="[2" type="Label" parent="pause"]
+visible = false
+layout_mode = 0
+offset_left = 557.0
+offset_top = 328.0
+offset_right = 597.0
+offset_bottom = 351.0
+text = "["
+
+[node name="]2" type="Label" parent="pause"]
+visible = false
+layout_mode = 0
+offset_left = 603.0
+offset_top = 328.0
+offset_right = 643.0
+offset_bottom = 351.0
+text = "]"
+
+[node name="Selection" type="AudioStreamPlayer" parent="pause"]
+stream = ExtResource("7_icqxs")
+volume_db = -10.0
+
+[node name="resume" type="Button" parent="pause"]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 309.0
+offset_right = 617.0
+offset_bottom = 325.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q0edj")
+flat = true
+
+[node name="exit" type="Button" parent="pause"]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 335.0
+offset_right = 602.0
+offset_bottom = 347.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q0edj")
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m2qc4")
+}
+autoplay = "fade-in"
+
+[connection signal="pressed" from="pause/resume" to="pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="pause/exit" to="pause" method="_on_exit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,4 +1,6 @@
 extends Node
+var save_path = "user://save.sav"
+var entrou : bool = false
 var saiu : bool = false
 var sound : bool = true
 var morto : bool = false
@@ -48,4 +50,14 @@ func instance_node(node, location, parent):
 	parent.add_child(node_instance)
 	node_instance.global_position = location
 	return node_instance
-	
+
+func save():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(wave_max)
+
+func load_data():
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	if FileAccess.file_exists(save_path):
+		wave_max = file.get_var(wave_max)
+	else:
+		wave_max = 0

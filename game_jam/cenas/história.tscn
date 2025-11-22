@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://co71i4goe0y8n"]
+[gd_scene load_steps=6 format=3 uid="uid://co71i4goe0y8n"]
 
 [ext_resource type="Script" uid="uid://bgwj37o2mavfq" path="res://scripts/história.gd" id="1_aaq7p"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="2_nqs17"]
+[ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="3_qs5i1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qs5i1"]
 shader = ExtResource("2_nqs17")
@@ -13,13 +14,31 @@ center_offset = Vector3(640, 360, 0)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_aaq7p")
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_qs5i1")
 scale = Vector2(0.9, 0.9)
 mesh = SubResource("QuadMesh_2ac2k")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -40.0
+offset_right = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_qs5i1")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1

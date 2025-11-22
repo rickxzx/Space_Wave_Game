@@ -1,8 +1,10 @@
 extends Node2D
 var uti_time_falta = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.load_data()
 	Global.progress = 0
 	Global.morte_anim = $"../morte/AnimationPlayer"
 
@@ -19,6 +21,7 @@ func uti_timer():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	Global.save()
 	$Label.text = "WAVE: " + str(Global.WAVE)
 	if Global.WAVE % 10 == 0:
 		if Global.extra:
