@@ -5,16 +5,13 @@ var pode : bool = false
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept") and pode:
 		$AnimationPlayer.play("fade-out")
-		Global.entrou = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await wait_timers(1.2)
-	pode = true
 	if !Global.entrou:
 		var tuto = tutorial.instantiate()
-		add_child(tuto)
-		await wait_timers(54)
+		$Control2.add_child(tuto)
+		await wait_timers(65)
 		$AnimationPlayer.play("fade-out")
 
 func wait_timers(seconds: float) -> void:
@@ -35,3 +32,8 @@ func _process(delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade-out":
 		get_tree().change_scene_to_file("res://cenas/map.tscn")
+		Global.entrou = true
+
+
+func _on_animation_player_animation_finished2(anim_name: StringName) -> void:
+	pode = true
