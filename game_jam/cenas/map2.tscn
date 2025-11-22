@@ -1,19 +1,49 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbywmwlj0svuo"]
+[gd_scene load_steps=16 format=3 uid="uid://bbywmwlj0svuo"]
 
-[ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="1_1mrve"]
 [ext_resource type="Script" uid="uid://d13h2yyk1cf8m" path="res://scripts/map_2.gd" id="1_h020n"]
 [ext_resource type="PackedScene" uid="uid://b83u4ijk8ticy" path="res://cenas/player.tscn" id="2_brot0"]
+[ext_resource type="PackedScene" uid="uid://cudaejth36svp" path="res://cenas/filtro.tscn" id="2_h020n"]
 [ext_resource type="Texture2D" uid="uid://cq1tutsie2lx7" path="res://sprite/estrelas.jpg" id="3_8wiw6"]
 [ext_resource type="Script" uid="uid://b2nfokss4wciv" path="res://scripts/pause.gd" id="5_euyfb"]
 [ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="6_m2qc4"]
 [ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="7_icqxs"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qe0x"]
-shader = ExtResource("1_1mrve")
+[sub_resource type="Animation" id="Animation_icqxs"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="QuadMesh" id="QuadMesh_brot0"]
-size = Vector2(1280, 720)
-center_offset = Vector3(640, 360, 0)
+[sub_resource type="Animation" id="Animation_q0edj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sts0"]
+_data = {
+&"RESET": SubResource("Animation_q0edj"),
+&"new_animation": SubResource("Animation_icqxs")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0edj"]
 
@@ -72,15 +102,31 @@ _data = {
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_h020n")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 648.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
-process_mode = 3
-material = SubResource("ShaderMaterial_0qe0x")
-position = Vector2(-2, 0)
-scale = Vector2(0.900781, 0.9)
-mesh = SubResource("QuadMesh_brot0")
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.5
+offset_top = 27.0
+offset_right = 86.5
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_m2qc4")
+text = "Press \"Space\" to Skip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_6sts0")
+}
+autoplay = "new_animation"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(582, 329)
@@ -201,6 +247,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_m2qc4")
 }
 autoplay = "fade-in"
+
+[node name="Node2D2" parent="." instance=ExtResource("2_h020n")]
+process_mode = 3
 
 [connection signal="pressed" from="pause/resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/exit" to="pause" method="_on_exit_pressed"]
