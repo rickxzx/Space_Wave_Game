@@ -1,5 +1,5 @@
 extends Node2D
-
+var som = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,5 +44,10 @@ func wait_timers(seconds: float) -> void:
 func escrever(label: Label, texto: String, velocidade: float = 0.05) -> void:
 	$Control/Label.text = ""
 	for c in texto:
+		if som == 2:
+			som = 3
+			$Control/Selection.play(0)
+		if som == 3:
+			som = 2
 		$Control/Label.text += c
 		await wait_timers(velocidade)

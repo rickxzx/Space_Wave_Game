@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://co71i4goe0y8n"]
+[gd_scene load_steps=9 format=3 uid="uid://co71i4goe0y8n"]
 
 [ext_resource type="Script" uid="uid://bgwj37o2mavfq" path="res://scripts/história.gd" id="1_aaq7p"]
 [ext_resource type="Shader" uid="uid://5rtddom6arx5" path="res://shaders/crt.gdshader" id="2_nqs17"]
 [ext_resource type="FontFile" uid="uid://b5dwns2e2wujf" path="res://fonts/Minecraft.ttf" id="3_qs5i1"]
+[ext_resource type="AudioStream" uid="uid://paqpko6o3dhp" path="res://sounds/strza.mp3" id="4_2ac2k"]
+[ext_resource type="AudioStream" uid="uid://cyc720ubviqih" path="res://sounds/selection.mp3" id="4_76hac"]
+[ext_resource type="AudioStream" uid="uid://ckvqceliyxom0" path="res://sounds/speak.mp3" id="6_ab7el"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qs5i1"]
 shader = ExtResource("2_nqs17")
@@ -42,3 +45,15 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_qs5i1")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
+
+[node name="Selection" type="AudioStreamPlayer2D" parent="Control"]
+position = Vector2(523, 351)
+stream = ExtResource("4_76hac")
+
+[node name="Strza" type="AudioStreamPlayer2D" parent="Control"]
+position = Vector2(284, 413)
+stream = ExtResource("4_2ac2k")
+
+[node name="Speak" type="AudioStreamPlayer2D" parent="Control"]
+position = Vector2(571, 212)
+stream = ExtResource("6_ab7el")
