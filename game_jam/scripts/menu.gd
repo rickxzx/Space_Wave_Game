@@ -33,10 +33,7 @@ func _process(_delta: float) -> void:
 			await get_tree().create_timer(1).timeout
 			$Control/AnimationPlayer.play("saida")
 			await get_tree().create_timer(0.5).timeout
-			if Global.entrou:
-				get_tree().change_scene_to_file("res://cenas/map.tscn") 
-			if !Global.entrou:
-				get_tree().change_scene_to_file("res://cenas/map2.tscn") 
+			get_tree().change_scene_to_file("res://cenas/map2.tscn") 
 		if clique == 3 and tran == false:
 			saiu = true
 			$Saiu.play(0)

@@ -34,7 +34,7 @@ func _spawn_minions():
 		spawn_timer.stop()
 		return
 	if chance == 1:
-		for i in range(5):
+		for i in range(2):
 			var posição = randf_range(-138, 138)
 			$Node2D.position.x = posição
 			$Node2D.position.y = posição

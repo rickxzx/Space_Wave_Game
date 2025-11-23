@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b83u4ijk8ticy"]
+[gd_scene load_steps=23 format=3 uid="uid://b83u4ijk8ticy"]
 
 [ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="1_8or6t"]
 [ext_resource type="Script" uid="uid://chuiv0hcgk0in" path="res://scripts/nave-player.gd" id="2_unwft"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://pmuovylsh4gw" path="res://sounds/nave_explode.mp3" id="8_mp0j6"]
 [ext_resource type="AudioStream" uid="uid://d1p1qcbffbgy5" path="res://sounds/scream.mp3" id="9_8bq56"]
 [ext_resource type="AudioStream" uid="uid://dvnqyu0uvf1ih" path="res://sounds/hurt.mp3" id="10_mp0j6"]
+[ext_resource type="AudioStream" uid="uid://b8kjjerpini08" path="res://sounds/synth-wave-effect.mp3" id="11_8bq56"]
+[ext_resource type="AudioStream" uid="uid://c50weohdskiar" path="res://sounds/80s-retro-synthwave.mp3" id="12_tckef"]
 
 [sub_resource type="Gradient" id="Gradient_unwft"]
 offsets = PackedFloat32Array(0.357143, 0.863636)
@@ -306,7 +308,6 @@ rotation = -1.5708
 scale = Vector2(5, 5)
 stream = ExtResource("6_8v4ht")
 volume_db = -10.0
-autoplay = true
 
 [node name="Frezzing" type="AudioStreamPlayer2D" parent="Node2D/nave"]
 process_mode = 3
@@ -335,9 +336,22 @@ parameters/looping = true
 stream = ExtResource("10_mp0j6")
 volume_db = -10.0
 
+[node name="Synth-wave-effect" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+position = Vector2(174.999, -160.001)
+stream = ExtResource("11_8bq56")
+volume_db = -10.0
+autoplay = true
+
+[node name="80s-retro-synthwave" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+position = Vector2(85.0003, 94.9997)
+stream = ExtResource("12_tckef")
+volume_db = -10.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
 [connection signal="area_exited" from="Node2D/nave/Area2D" to="Node2D" method="_on_area_2d_area_exited"]
 [connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="uti_acabou"]
 [connection signal="finished" from="Node2D/nave/MusicTheme" to="Node2D" method="_on_music_theme_finished"]
+[connection signal="finished" from="Node2D/nave/Synth-wave-effect" to="Node2D" method="_on_synthwaveeffect_finished"]
+[connection signal="finished" from="Node2D/nave/80s-retro-synthwave" to="Node2D" method="_on_sretrosynthwave_finished"]

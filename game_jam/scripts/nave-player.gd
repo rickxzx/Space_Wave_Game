@@ -213,7 +213,7 @@ func não_run():
 	speed = 500
 
 func _on_music_theme_finished() -> void:
-	$nave/MusicTheme.play(0)
+	$"nave/Synth-wave-effect".play(0)
 
 
 func uti_acabou(_anim_name: StringName) -> void:
@@ -224,3 +224,11 @@ func uti_acabou(_anim_name: StringName) -> void:
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("dano_grav"):
 		Global.life -= 1
+
+
+func _on_synthwaveeffect_finished() -> void:
+	$"nave/80s-retro-synthwave".play(0)
+
+
+func _on_sretrosynthwave_finished() -> void:
+	$nave/MusicTheme.play(0)
