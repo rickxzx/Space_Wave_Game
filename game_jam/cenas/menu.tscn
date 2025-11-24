@@ -568,12 +568,12 @@ offset_top = 19.0
 offset_right = 163.0
 offset_bottom = 111.0
 theme_override_fonts/font = ExtResource("2_hsu4v")
-text = "\"WASD\" or \"Arrows\" = move
-\"E\" = Energy Shield
-\"Q\" or \"Space\" = Use Powerup 
-\"LMB\" = Shoot
-\"ESC\" or \"P\" = Pause
-\"CTRL\" or \"RMB\" = Next wave"
+text = "\"WASD\" or \"Arrows\" = [Move]
+\"E\" = [Energy Shield]
+\"Q\" or \"Space\" = [Use Powerup]
+\"LMB\" = [Shoot]
+\"ESC\" or \"P\" = [Pause]
+\"CTRL\" or \"RMB\" = [Next wave]"
 horizontal_alignment = 1
 
 [node name="3" type="Label" parent="Control"]

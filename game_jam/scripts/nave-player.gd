@@ -103,7 +103,7 @@ func _process(delta: float) -> void:
 	velocity.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	if morto == false and !Global.paused:
 		global_position += speed * velocity * delta
-	var mouse = get_global_mouse_position() 
+	var mouse = get_global_mouse_position()
 	if !morto and !Global.paused:
 		look_at(mouse)
 	if Input.is_action_just_pressed("LMB") and Global.wave == true:
@@ -116,7 +116,7 @@ func _process(delta: float) -> void:
 						$"..".add_child(_shoot)
 						call_deferred("_setup_bullet", _shoot)
 	if Input.is_action_pressed("LMB") and Global.wave == true:
-		if !Global.paused:
+		if !Global.paused and Global.wave2:
 			if metra == true and !morto:
 				for i in range(Global.tiros_por_clique):
 					var _shoot = bullet.instantiate()
@@ -145,6 +145,10 @@ func tomou_dano(area: Area2D) -> void:
 		if area.is_in_group("enemy_1"):
 			Global.life -= 1
 			if Global.life <= 0:
+				$"nave/Synth-wave-effect".stream_paused = true
+				$"nave/80s-retro-synthwave".stream_paused = true
+				$"nave/1980".stream_paused = true
+				$"nave/Synthwave-music".stream_paused = true
 				$nave/Area2D.queue_free()
 				$nave/MusicTheme.stream_paused = true
 				$nave/NaveExplode.play(0)
@@ -152,6 +156,10 @@ func tomou_dano(area: Area2D) -> void:
 		if area.is_in_group("enemy_2"):
 			Global.life -= 2
 			if Global.life <= 0:
+				$"nave/Synth-wave-effect".stream_paused = true
+				$"nave/80s-retro-synthwave".stream_paused = true
+				$"nave/1980".stream_paused = true
+				$"nave/Synthwave-music".stream_paused = true
 				$nave/Area2D.queue_free()
 				$nave/MusicTheme.stream_paused = true
 				$nave/NaveExplode.play(0)
@@ -159,6 +167,10 @@ func tomou_dano(area: Area2D) -> void:
 		if area.is_in_group("enemy_3"):
 			Global.life -= 3
 			if Global.life <= 0:
+				$"nave/Synth-wave-effect".stream_paused = true
+				$"nave/80s-retro-synthwave".stream_paused = true
+				$"nave/1980".stream_paused = true
+				$"nave/Synthwave-music".stream_paused = true
 				$nave/Area2D.queue_free()
 				$nave/MusicTheme.stream_paused = true
 				$nave/NaveExplode.play(0)
@@ -166,6 +178,10 @@ func tomou_dano(area: Area2D) -> void:
 		if area.is_in_group("enemy4"):
 			Global.life -= 1
 			if Global.life <= 0:
+				$"nave/Synth-wave-effect".stream_paused = true
+				$"nave/80s-retro-synthwave".stream_paused = true
+				$"nave/1980".stream_paused = true
+				$"nave/Synthwave-music".stream_paused = true
 				$nave/Area2D.queue_free()
 				$nave/MusicTheme.stream_paused = true
 				$nave/NaveExplode.play(0)
@@ -173,6 +189,10 @@ func tomou_dano(area: Area2D) -> void:
 	if area.is_in_group("dano_grav"):
 		Global.life -= 5
 		if Global.life <= 0:
+			$"nave/Synth-wave-effect".stream_paused = true
+			$"nave/80s-retro-synthwave".stream_paused = true
+			$"nave/1980".stream_paused = true
+			$"nave/Synthwave-music".stream_paused = true
 			$nave/Area2D.queue_free()
 			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
@@ -180,6 +200,10 @@ func tomou_dano(area: Area2D) -> void:
 	if area.is_in_group("kill"):
 		Global.life -= 11
 		if Global.life <= 0:
+			$"nave/Synth-wave-effect".stream_paused = true
+			$"nave/80s-retro-synthwave".stream_paused = true
+			$"nave/1980".stream_paused = true
+			$"nave/Synthwave-music".stream_paused = true
 			$nave/Area2D.queue_free()
 			$nave/MusicTheme.stream_paused = true
 			$nave/NaveExplode.play(0)
@@ -231,4 +255,12 @@ func _on_synthwaveeffect_finished() -> void:
 
 
 func _on_sretrosynthwave_finished() -> void:
+	$"nave/1980".play(0)
+
+
+func _on__finished() -> void:
+	$"nave/Synthwave-music".play(0)
+
+
+func _on_synthwavemusic_finished() -> void:
 	$nave/MusicTheme.play(0)

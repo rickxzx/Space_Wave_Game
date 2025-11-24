@@ -70,14 +70,6 @@ shape = SubResource("CircleShape2D_t2ynt")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="3" groups=["kill"]]
 shape = SubResource("CircleShape2D_dx8ej")
 
-[node name="life" type="ProgressBar" parent="."]
-modulate = Color(1, 0, 0, 1)
-offset_left = -47.0
-offset_top = -46.0
-offset_right = 48.0
-offset_bottom = -36.0
-show_percentage = false
-
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1, -131)
 

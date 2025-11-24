@@ -1,6 +1,7 @@
 extends Node
 var save_path = "user://save.sav"
 var saiu : bool = false
+var particles : bool = true
 var sound : bool = true
 var morto : bool = false
 var player = null
@@ -17,6 +18,8 @@ var bullet_rotation = 0
 var player_position = 0
 var criação = null
 var camera: Camera2D
+var life_boss : ProgressBar
+var boos_life : AnimationPlayer
 var explosão_do_cometa: AudioStreamPlayer2D
 var dano_do_cometa1: AudioStreamPlayer
 var cam_effects : AnimationPlayer

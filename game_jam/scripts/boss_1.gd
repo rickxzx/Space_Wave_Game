@@ -14,7 +14,8 @@ var stun : bool = false
 
 
 func _ready() -> void:
-	$life.value = life
+	Global.boos_life.play("new_animation")
+	Global.life_boss.value = life
 	Global.inimigos_gerados += 1
 	for i in range(5):
 		var posição = randf_range(-138, 138)
@@ -100,11 +101,12 @@ func _process(delta: float) -> void:
 		particula.modulate = "000000"
 		Global.inimigos_gerados -= 1
 		Global.score += 100
+		Global.boos_life.play("bye")
 		$".".queue_free()
 
 func tomou_dano(area: Area2D) -> void:
 	if area.is_in_group("uti"):
-		$life.value -= 10
+		Global.life_boss.value -= 10
 		life -= 10
 		$".".modulate = "ffffffcc"
 		stun = true
@@ -112,7 +114,7 @@ func tomou_dano(area: Area2D) -> void:
 		cor_white()
 		stun = false
 	if area.is_in_group("bullets"):
-		$life.value -= 1
+		Global.life_boss.value -= 1
 		life -= 1
 		$".".modulate = "ffffffcc"
 		stun = true

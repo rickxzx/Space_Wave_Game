@@ -1,5 +1,5 @@
 extends Sprite2D
-var speed = randi_range(220, 250)
+var speed = randi_range(400, 500)
 var velocity = Vector2()
 var stun : bool = false
 @export var life = 1
@@ -21,9 +21,10 @@ func _process(delta: float) -> void:
 		global_position -= velocity * 50 * delta
 	if life <= 0 and Global.criação != null:
 		Global.explosão_do_cometa.play(0)
-		var particula = Global.instance_node(particulas, global_position, Global.criação)
-		particula.rotation_degrees = Global.bullet_rotation 
-		particula.modulate = "00ffb3b6"
+		if Global.particles:
+			var particula = Global.instance_node(particulas, global_position, Global.criação)
+			particula.rotation_degrees = Global.bullet_rotation 
+			particula.modulate = "00ffb3b6"
 		Global.inimigos_gerados -= 1
 		Global.score += 200
 		$"..".queue_free()

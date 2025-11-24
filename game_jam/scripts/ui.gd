@@ -7,6 +7,8 @@ func _ready() -> void:
 	Global.load_data()
 	Global.progress = 0
 	Global.morte_anim = $"../morte/AnimationPlayer"
+	Global.boos_life = $"../boss life/boss"
+	Global.life_boss = $"../boss life"
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("UTI") and Global.uti_charge == true:

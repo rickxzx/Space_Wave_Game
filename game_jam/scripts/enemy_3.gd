@@ -24,11 +24,13 @@ func _process(delta: float) -> void:
 		global_position -= velocity * 50 * delta
 	if life <= 0 and Global.criação != null:
 		Global.explosão_do_cometa.play(0)
-		var particula = Global.instance_node(particulas, global_position, Global.criação)
+		if Global.particles:
+			var particula = Global.instance_node(particulas, global_position, Global.criação)
+			particula.rotation_degrees = Global.bullet_rotation 
+			particula.modulate = "ff0000cc"
 		if chance == 3:
 			var _cura = Global.instance_node(curaa, global_position, Global.criação)
-		particula.rotation_degrees = Global.bullet_rotation 
-		particula.modulate = "ff0000cc"
+
 		Global.inimigos_gerados -= 1
 		Global.score += 300
 		$"..".queue_free()

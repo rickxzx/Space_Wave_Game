@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b83u4ijk8ticy"]
+[gd_scene load_steps=25 format=3 uid="uid://b83u4ijk8ticy"]
 
 [ext_resource type="Texture2D" uid="uid://kawpis8hgyqv" path="res://sprite/nave-sprite(1).png" id="1_8or6t"]
 [ext_resource type="Script" uid="uid://chuiv0hcgk0in" path="res://scripts/nave-player.gd" id="2_unwft"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://dvnqyu0uvf1ih" path="res://sounds/hurt.mp3" id="10_mp0j6"]
 [ext_resource type="AudioStream" uid="uid://b8kjjerpini08" path="res://sounds/synth-wave-effect.mp3" id="11_8bq56"]
 [ext_resource type="AudioStream" uid="uid://c50weohdskiar" path="res://sounds/80s-retro-synthwave.mp3" id="12_tckef"]
+[ext_resource type="AudioStream" uid="uid://cdtlhp8dn6cru" path="res://sounds/1980.mp3" id="13_vtxll"]
+[ext_resource type="AudioStream" uid="uid://c1fgp8bjbe43o" path="res://sounds/synthwave-music.mp3" id="14_s1iqd"]
 
 [sub_resource type="Gradient" id="Gradient_unwft"]
 offsets = PackedFloat32Array(0.357143, 0.863636)
@@ -224,6 +226,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D"]
 modulate = Color(0.545098, 0.545098, 0.545098, 1)
+position = Vector2(-1, 0)
 
 [node name="Node2D" type="Node2D" parent="."]
 process_mode = 3
@@ -347,6 +350,16 @@ position = Vector2(85.0003, 94.9997)
 stream = ExtResource("12_tckef")
 volume_db = -10.0
 
+[node name="1980" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+position = Vector2(25, 9.99991)
+rotation = -1.5708
+scale = Vector2(5, 5)
+stream = ExtResource("13_vtxll")
+
+[node name="Synthwave-music" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+position = Vector2(20, -10.0001)
+stream = ExtResource("14_s1iqd")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
@@ -355,3 +368,5 @@ volume_db = -10.0
 [connection signal="finished" from="Node2D/nave/MusicTheme" to="Node2D" method="_on_music_theme_finished"]
 [connection signal="finished" from="Node2D/nave/Synth-wave-effect" to="Node2D" method="_on_synthwaveeffect_finished"]
 [connection signal="finished" from="Node2D/nave/80s-retro-synthwave" to="Node2D" method="_on_sretrosynthwave_finished"]
+[connection signal="finished" from="Node2D/nave/1980" to="Node2D" method="_on__finished"]
+[connection signal="finished" from="Node2D/nave/Synthwave-music" to="Node2D" method="_on_synthwavemusic_finished"]
