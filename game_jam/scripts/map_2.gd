@@ -4,7 +4,7 @@ var pode : bool = false
 
 func _input(event: InputEvent) -> void:
 	if !Global.paused:
-		if Input.is_action_just_pressed("ui_accept") and pode:
+		if Input.is_action_just_pressed("enter") and pode:
 			$AnimationPlayer.play("fade-out")
 
 # Called when the node enters the scene tree for the first time.

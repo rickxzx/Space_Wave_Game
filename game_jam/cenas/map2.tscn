@@ -175,7 +175,7 @@ offset_right = 86.5
 offset_bottom = 617.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("6_m2qc4")
-text = "Press \"Space\" to Skip"
+text = "Press \"Enter\" to Skip"
 horizontal_alignment = 1
 vertical_alignment = 1
 
