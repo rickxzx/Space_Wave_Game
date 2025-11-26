@@ -1773,6 +1773,7 @@ position = Vector2(564, -461)
 [connection signal="pressed" from="UI/loja2/uti/buy_uti" to="UI/loja2" method="_on_buy_uti_pressed"]
 [connection signal="pressed" from="UI/loja2/life/buy_life" to="UI/loja2" method="_on_buy_life_pressed"]
 [connection signal="pressed" from="UI/loja2/return" to="spawner" method="_on_return_pressed"]
+[connection signal="animation_finished" from="UI/AnimationPlayer" to="spawner" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="powerup/powerup" to="powerup" method="_on_powerup_timeout"]
 [connection signal="pressed" from="pause/resume" to="pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="pause/exit" to="pause" method="_on_exit_pressed"]

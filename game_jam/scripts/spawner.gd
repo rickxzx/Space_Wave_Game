@@ -183,11 +183,15 @@ func _on_loja_pressed() -> void:
 	$"../UI/loja2".visible = true
 
 func _on_return_pressed() -> void:
-	loja_button = false
-	Global.wave = true
 	$"../UI/loja/Loja".play(0.35)
 	$"../UI/AnimationPlayer".play("loja2")
 	$"../UI/score".visible = true
 	$"../UI/Button".visible = true
 	$"../UI/loja".visible = true
 	$"../UI/loja2/return".visible = false
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name  == "loja2":
+		loja_button = false
+		Global.wave = true

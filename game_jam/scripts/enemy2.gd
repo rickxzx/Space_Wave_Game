@@ -1,5 +1,5 @@
 extends Sprite2D
-var speed = randi_range(400, 500)
+var speed = randi_range(300, 450)
 var velocity = Vector2()
 var stun : bool = false
 @export var life = 1
