@@ -524,3 +524,5 @@ position = Vector2(513, 327)
 stream = ExtResource("11_tncfj")
 volume_db = -10.0
 parameters/looping = true
+
+[connection signal="finished" from="power-explan/Eco-bass-effect" to="." method="_on_ecobasseffect_finished"]

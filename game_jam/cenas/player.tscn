@@ -225,14 +225,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D"]
-modulate = Color(0.545098, 0.545098, 0.545098, 1)
-position = Vector2(-1, 0)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D2" type="Node2D" parent="."]
 process_mode = 3
+position = Vector2(-1, 0)
 script = ExtResource("2_unwft")
 
-[node name="PointLight2D" type="PointLight2D" parent="Node2D"]
+[node name="PointLight2D" type="PointLight2D" parent="Node2D2"]
 position = Vector2(-16, 2)
 rotation = 1.57079
 scale = Vector2(3, 3)
@@ -241,55 +240,55 @@ shadow_enabled = true
 shadow_color = Color(0.117647, 0.117647, 0.117647, 1)
 texture = SubResource("GradientTexture2D_kthid")
 
-[node name="nave" type="Sprite2D" parent="Node2D"]
+[node name="nave" type="Sprite2D" parent="Node2D2"]
 process_mode = 3
 rotation = 1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_8or6t")
 
-[node name="Node2D" type="Node2D" parent="Node2D/nave"]
+[node name="Node2D" type="Node2D" parent="Node2D2/nave"]
 position = Vector2(-8.74228e-06, -200)
 rotation = -1.5708
 scale = Vector2(5, 5)
 
-[node name="Area2D" type="Area2D" parent="Node2D/nave" groups=["nave"]]
+[node name="Area2D" type="Area2D" parent="Node2D2/nave" groups=["nave"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/nave/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/nave/Area2D"]
 position = Vector2(2.5, -10)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_unwft")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/nave/Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D2/nave/Area2D"]
 position = Vector2(-9.99998, 110)
 shape = SubResource("RectangleShape2D_kthid")
 
-[node name="uti" type="Area2D" parent="Node2D/nave" groups=["uti"]]
+[node name="uti" type="Area2D" parent="Node2D2/nave" groups=["uti"]]
 process_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/nave/uti"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/nave/uti"]
 shape = SubResource("CircleShape2D_unwft")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/nave/uti"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D2/nave/uti"]
 libraries = {
 &"": SubResource("AnimationLibrary_15dsx")
 }
 
-[node name="CircleField" type="Sprite2D" parent="Node2D/nave/uti"]
+[node name="CircleField" type="Sprite2D" parent="Node2D2/nave/uti"]
 visible = false
 position = Vector2(-40, 40)
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("3_kthid")
 
-[node name="PointLight2D" type="PointLight2D" parent="Node2D/nave/uti"]
+[node name="PointLight2D" type="PointLight2D" parent="Node2D2/nave/uti"]
 color = Color(1, 1, 1, 0)
 texture = SubResource("GradientTexture2D_xojfc")
 texture_scale = 0.01
 
-[node name="Energy" type="AudioStreamPlayer" parent="Node2D/nave/uti"]
+[node name="Energy" type="AudioStreamPlayer" parent="Node2D2/nave/uti"]
 stream = ExtResource("4_xojfc")
 volume_db = -20.0
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D/nave"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D2/nave"]
 process_mode = 3
 z_index = -1
 position = Vector2(0.000814498, 225)
@@ -304,7 +303,7 @@ scale_amount_min = 0.02
 scale_amount_max = 0.03
 color = Color(1, 0.321569, 0, 0.141176)
 
-[node name="MusicTheme" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="MusicTheme" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 process_mode = 1
 position = Vector2(30.0002, 54.9999)
 rotation = -1.5708
@@ -312,21 +311,21 @@ scale = Vector2(5, 5)
 stream = ExtResource("6_8v4ht")
 volume_db = -10.0
 
-[node name="Frezzing" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="Frezzing" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 process_mode = 3
 position = Vector2(55.0002, 49.9998)
 rotation = -1.5708
 scale = Vector2(5, 5)
 stream = ExtResource("7_rijvs")
 
-[node name="NaveExplode" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="NaveExplode" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 process_mode = 3
 position = Vector2(1.80999e-05, 5)
 rotation = -1.5708
 scale = Vector2(5, 5)
 stream = ExtResource("8_mp0j6")
 
-[node name="Scream" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="Scream" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 process_mode = 3
 position = Vector2(20.0001, 39.9999)
 rotation = -1.5708
@@ -335,38 +334,42 @@ stream = ExtResource("9_8bq56")
 volume_db = -15.0
 parameters/looping = true
 
-[node name="Hurt" type="AudioStreamPlayer" parent="Node2D/nave"]
+[node name="Hurt" type="AudioStreamPlayer" parent="Node2D2/nave"]
 stream = ExtResource("10_mp0j6")
 volume_db = -10.0
 
-[node name="Synth-wave-effect" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="Synth-wave-effect" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 position = Vector2(174.999, -160.001)
 stream = ExtResource("11_8bq56")
 volume_db = -10.0
 autoplay = true
 
-[node name="80s-retro-synthwave" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="80s-retro-synthwave" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 position = Vector2(85.0003, 94.9997)
 stream = ExtResource("12_tckef")
 volume_db = -10.0
 
-[node name="1980" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="1980" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 position = Vector2(25, 9.99991)
 rotation = -1.5708
 scale = Vector2(5, 5)
 stream = ExtResource("13_vtxll")
 
-[node name="Synthwave-music" type="AudioStreamPlayer2D" parent="Node2D/nave"]
+[node name="Synthwave-music" type="AudioStreamPlayer2D" parent="Node2D2/nave"]
 position = Vector2(20, -10.0001)
 stream = ExtResource("14_s1iqd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
+position = Vector2(-1, 0)
 
-[connection signal="area_entered" from="Node2D/nave/Area2D" to="Node2D" method="tomou_dano"]
-[connection signal="area_exited" from="Node2D/nave/Area2D" to="Node2D" method="_on_area_2d_area_exited"]
-[connection signal="animation_finished" from="Node2D/nave/uti/AnimationPlayer" to="Node2D" method="uti_acabou"]
-[connection signal="finished" from="Node2D/nave/MusicTheme" to="Node2D" method="_on_music_theme_finished"]
-[connection signal="finished" from="Node2D/nave/Synth-wave-effect" to="Node2D" method="_on_synthwaveeffect_finished"]
-[connection signal="finished" from="Node2D/nave/80s-retro-synthwave" to="Node2D" method="_on_sretrosynthwave_finished"]
-[connection signal="finished" from="Node2D/nave/1980" to="Node2D" method="_on__finished"]
-[connection signal="finished" from="Node2D/nave/Synthwave-music" to="Node2D" method="_on_synthwavemusic_finished"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+
+[connection signal="area_entered" from="Node2D2/nave/Area2D" to="Node2D2" method="tomou_dano"]
+[connection signal="area_exited" from="Node2D2/nave/Area2D" to="Node2D2" method="_on_area_2d_area_exited"]
+[connection signal="animation_finished" from="Node2D2/nave/uti/AnimationPlayer" to="Node2D2" method="uti_acabou"]
+[connection signal="finished" from="Node2D2/nave/MusicTheme" to="Node2D2" method="_on_music_theme_finished"]
+[connection signal="finished" from="Node2D2/nave/Synth-wave-effect" to="Node2D2" method="_on_synthwaveeffect_finished"]
+[connection signal="finished" from="Node2D2/nave/80s-retro-synthwave" to="Node2D2" method="_on_sretrosynthwave_finished"]
+[connection signal="finished" from="Node2D2/nave/1980" to="Node2D2" method="_on__finished"]
+[connection signal="finished" from="Node2D2/nave/Synthwave-music" to="Node2D2" method="_on_synthwavemusic_finished"]

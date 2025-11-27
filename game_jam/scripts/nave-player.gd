@@ -113,14 +113,14 @@ func _process(delta: float) -> void:
 					for i in range(Global.tiros_por_clique):
 						atirou = true
 						var _shoot = bullet.instantiate()
-						$"..".add_child(_shoot)
+						add_sibling(_shoot)
 						call_deferred("_setup_bullet", _shoot)
 	if Input.is_action_pressed("LMB") and Global.wave == true:
 		if !Global.paused and Global.wave2:
 			if metra == true and !morto:
 				for i in range(Global.tiros_por_clique):
 					var _shoot = bullet.instantiate()
-					$"..".add_child(_shoot)
+					add_sibling(_shoot)
 					call_deferred("_setup_bullet", _shoot)
 
 func _setup_bullet(bullet_instance):

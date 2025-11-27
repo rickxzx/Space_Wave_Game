@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	queue_free()
+	$".".queue_free()
 
 
 func deu_dano(area: Area2D) -> void:
@@ -25,8 +25,8 @@ func deu_dano(area: Area2D) -> void:
 		Global.dano_do_cometa1.play(0)
 		if Global.extra:
 			Global.score += 500
-		queue_free()
+		$".".queue_free()
 
 
 func _on_timer_timeout() -> void:
-	queue_free()
+	$".".queue_free()
